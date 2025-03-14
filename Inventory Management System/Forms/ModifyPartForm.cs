@@ -243,7 +243,7 @@ namespace Inventory_Management_System
 
                 // Reload the DataGridView to reflect changes
                 //ReloadDataGridView(DataGridView q);
-                ReloadDataGridView(MainScreen.DataGridPart);
+                //ReloadDataGridView(MainScreen.DataGridPart);
 
                 this.Close();
 
@@ -254,7 +254,7 @@ namespace Inventory_Management_System
             }
         }
 
-        public void ReloadDataGridView(DataGridView q)
+        private void ReloadDataGridView(DataGridView q)
         {
             // Clear the current data source (optional, but ensures no stale data)
             q.DataSource = null;
