@@ -20,44 +20,7 @@ namespace Inventory_Management_System
         {
             InitializeComponent();
         }
-        /*
-            Part PartsGV = Part.lookupPart(partID);
-
-            String CoName = "";
-            String MachID = "0";
-
-            ModIDTextBox.Text = PartsGV.PartID.ToString();
-            ModPartNameTextBox.Text = PartsGV.Name;
-            ModInvTextBox.Text = PartsGV.InStock.ToString();
-            ModPriceTextBox.Text = PartsGV.Price.ToString();
-            ModMinTextBox.Text = PartsGV.Min.ToString();
-            ModMaxTextBox.Text = PartsGV.Max.ToString();
-
-            try
-            {
-                MachID = PartsGV.MachineID.ToString();
-                if (MachID != "0")
-                {
-                    ModMachCompTextBox.Text = MachID;
-                    this.ModInHouseRadioButton.Checked = true;
-                    CoName = "";
-                }
-            }
-            catch (NullReferenceException) { }
-
-            try
-            {
-                CoName = PartsGV.CompanyName.ToString();
-                if (MachID == "0")
-                {
-                    CoName = PartsGV.CompanyName.ToString();
-                    ModMachCompTextBox.Text = CoName;
-                    this.ModOutSourcedRadioButton.Checked = true;
-                }
-            }
-            catch (NullReferenceException) { }
-        }
-        */
+        
         public void ModInHouseRadioButton_CheckedChanged(object sendee, EventArgs e)
         {
             if (ModInHouseRadioButton.Checked == true)
@@ -236,7 +199,7 @@ namespace Inventory_Management_System
             }
         }
         
-        private void ModPartSaveButton_Click(object sender, EventArgs e)
+        public void ModPartSaveButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -279,7 +242,8 @@ namespace Inventory_Management_System
                 }
 
                 // Reload the DataGridView to reflect changes
-                ReloadDataGridView();
+                //ReloadDataGridView(DataGridView q);
+                ReloadDataGridView(MainScreen.DataGridPart);
 
                 this.Close();
 
@@ -290,13 +254,13 @@ namespace Inventory_Management_System
             }
         }
 
-        private void ReloadDataGridView()
+        public void ReloadDataGridView(DataGridView q)
         {
             // Clear the current data source (optional, but ensures no stale data)
-            dataGridViewPart.DataSource = null;
+            q.DataSource = null;
 
             // Re-assign the data source
-            dataGridView1.DataSource = Inventory.AllParts;
+            q.DataSource = Inventory.AllParts;
         }
 
         private void ModifyPartForm_Load(object sender, EventArgs e)
