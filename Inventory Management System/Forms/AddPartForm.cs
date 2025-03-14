@@ -70,7 +70,7 @@ namespace Inventory_Management_System
             */
         }
 
-        private static void CompareMinMax(int min, int max)
+        public static void CompareMinMax(int min, int max)
         {
             if (min > max)
             {
@@ -78,7 +78,7 @@ namespace Inventory_Management_System
             }
         }
 
-        private static void CheckInvValues(int inv, int min, int max)
+        public static void CheckInvValues(int inv, int min, int max)
         {
             if (inv < min || inv > max)
             {

@@ -159,7 +159,6 @@
             // 
             // InHouseRadioButton
             // 
-            this.InHouseRadioButton.AllowDrop = true;
             this.InHouseRadioButton.AutoSize = true;
             this.InHouseRadioButton.Checked = true;
             this.InHouseRadioButton.Location = new System.Drawing.Point(82, 135);

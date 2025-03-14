@@ -59,7 +59,7 @@ namespace Inventory_Management_System
 
         private void ModOutSourcedRadioButton_CheckedChanged(Object sendee, EventArgs e)
         {
-            if (AddProdOutsourcedRadioButton.Checked == true)
+            if (AddProdOutSourcedRadioButton.Checked == true)
             {
                 MachCompLabel.Text = "Company Name";
                 MachCompLabel.Name = "Company Name";
@@ -68,7 +68,77 @@ namespace Inventory_Management_System
         }
         private void AddProductForm_Load(object sender, EventArgs e)
         {
+            int nextProduct = Inventory.AllProducts.Max(product => product.ProductID) + 1;
+            AddProdIDTextBox.Text = nextProduct.ToString();
+        }
 
+        private void SearchButtonProduct_Click(object sender, EventArgs e)
+        {
+            BindingList<Part> TempList = new BindingList<Part>();
+            bool found = false;
+            if (SearchFieldProduct.Text != "")
+            {
+                for (int i = 0; i < Inventory.AllParts.Count; i++)
+                {
+                    if (Inventory.AllParts[i].Name.ToUpper().Contains(SearchFieldProduct.Text.ToUpper()))
+                    {
+                        TempList.Add(Inventory.AllParts[i]);
+                        found = true;
+                    }
+                }
+                if (found)
+                    DataGridPart.DataSource = TempList;
+            }
+            if (!found)
+            {
+                //MessageBox.Show("Nothing found.");
+                DataGridPart.DataSource = Inventory.AllParts;
+            }
+        }
+        public void SaveButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CompareMinMax(Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text));
+                CheckInvValues(Int32.Parse(AddProdInventoryTextBox.Text), Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text));
+
+                int AddPartPartID = Int32.Parse(AddProdIDTextBox.Text);
+
+                if (AddProdInHouseRadioButton.Checked)
+                {
+                    Part inHouse = new InHouse(AddPartPartID, AddProdNameTextBox.Text, Decimal.Parse(AddProdPriceCostTextBox.Text), Int32.Parse(AddProdInventoryTextBox.Text), Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text), Int32.Parse(AddProdMachCompIDTextBox.Text));
+
+                    Inventory.AllParts.Add(inHouse);
+                }
+                else if (AddProdOutSourcedRadioButton.Checked)
+                {
+                    Part OutSourced = new OutSourced(AddPartPartID, AddProdNameTextBox.Text, Decimal.Parse(AddProdPriceCostTextBox.Text), Int32.Parse(AddProdInventoryTextBox.Text), Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text), AddProdMachCompIDTextBox.Text);
+
+                    Inventory.AllParts.Add(OutSourced);
+                }
+
+                this.Close();
+
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(x.Message);
+            }
+        }
+        public static void CompareMinMax(int min, int max)
+        {
+            if (min > max)
+            {
+                throw new Exception("Minium value cannot be greater than Max value.");
+            }
+        }
+
+        public static void CheckInvValues(int inv, int min, int max)
+        {
+            if (inv < min || inv > max)
+            {
+                throw new Exception("Inventory cannot be greater than Max or less than Minium.");
+            }
         }
     }
 }
