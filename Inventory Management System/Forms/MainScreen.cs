@@ -51,7 +51,7 @@ namespace Inventory_Management_System
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         public void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
