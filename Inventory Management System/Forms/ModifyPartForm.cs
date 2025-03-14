@@ -212,7 +212,7 @@ namespace Inventory_Management_System
         {
             if (min > max)
             {
-                throw new Exception("Min value cannot be greater than Max value.");
+                MessageBox.Show("Min value cannot be greater than Max value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -220,7 +220,7 @@ namespace Inventory_Management_System
         {
             if (inv < min || inv > max)
             {
-                throw new Exception("Inventory cannot be greater than Max or less than Min.");
+                MessageBox.Show("Inventory cannot be greater than Max or less than Min.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -245,18 +245,41 @@ namespace Inventory_Management_System
 
                 int ModID = Int32.Parse(modPartID);
 
-                if (ModInHouseRadioButton.Checked)
-                {
-                    Part inHouse = new InHouse(ModID, ModPartNameTextBox.Text, Decimal.Parse(ModPriceTextBox.Text), Int32.Parse(ModInvTextBox.Text), Int32.Parse(ModMinTextBox.Text), Int32.Parse(ModMaxTextBox.Text), Int32.Parse(ModMachCompTextBox.Text));
+                // Find the part in the list by its ID
+                Part partToUpdate = Inventory.AllParts.FirstOrDefault(part => part.PartID == ModID);
 
-                    Inventory.AllParts.Add(inHouse);
-                }
-                else if (ModOutSourcedRadioButton.Checked)
+                if (partToUpdate != null)
                 {
-                    Part OutSourced = new OutSourced(ModID, ModPartNameTextBox.Text, Decimal.Parse(ModPriceTextBox.Text), Int32.Parse(ModInvTextBox.Text), Int32.Parse(ModMinTextBox.Text), Int32.Parse(ModMaxTextBox.Text), ModMachCompTextBox.Text);
+                    // Update the existing part
+                    partToUpdate.Name = ModPartNameTextBox.Text;
+                    partToUpdate.Price = Decimal.Parse(ModPriceTextBox.Text);
+                    partToUpdate.InStock = Int32.Parse(ModInvTextBox.Text);
+                    partToUpdate.Min = Int32.Parse(ModMinTextBox.Text);
+                    partToUpdate.Max = Int32.Parse(ModMaxTextBox.Text);
 
-                    Inventory.AllParts.Add(OutSourced);
+                    if (ModInHouseRadioButton.Checked && partToUpdate is InHouse inHousePart)
+                    {
+                        Part inHouse = new InHouse(ModID, ModPartNameTextBox.Text, Decimal.Parse(ModPriceTextBox.Text), Int32.Parse(ModInvTextBox.Text), Int32.Parse(ModMinTextBox.Text), Int32.Parse(ModMaxTextBox.Text), Int32.Parse(ModMachCompTextBox.Text));
+
+                        inHousePart.MachineID = Int32.Parse(ModMachCompTextBox.Text);
+                    }
+                    else if ((ModOutSourcedRadioButton.Checked && partToUpdate is OutSourced outSourcedPart))
+                    {
+                        Part OutSourced = new OutSourced(ModID, ModPartNameTextBox.Text, Decimal.Parse(ModPriceTextBox.Text), Int32.Parse(ModInvTextBox.Text), Int32.Parse(ModMinTextBox.Text), Int32.Parse(ModMaxTextBox.Text), ModMachCompTextBox.Text);
+
+                        outSourcedPart.CompanyName = ModMachCompTextBox.Text;
+                    }
                 }
+
+                else
+                {
+                    // Handle the case when the part with ModID doesn't exist
+                    MessageBox.Show("Part not found in the inventory.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Reload the DataGridView to reflect changes
+                ReloadDataGridView();
 
                 this.Close();
 
@@ -265,6 +288,15 @@ namespace Inventory_Management_System
             {
                 MessageBox.Show(x.Message);
             }
+        }
+
+        private void ReloadDataGridView()
+        {
+            // Clear the current data source (optional, but ensures no stale data)
+            dataGridViewPart.DataSource = null;
+
+            // Re-assign the data source
+            dataGridView1.DataSource = Inventory.AllParts;
         }
 
         private void ModifyPartForm_Load(object sender, EventArgs e)
