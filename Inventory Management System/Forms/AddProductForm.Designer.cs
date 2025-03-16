@@ -53,8 +53,6 @@
             this.AddProductLabel = new System.Windows.Forms.Label();
             this.AddProdOutSourcedRadioButton = new System.Windows.Forms.RadioButton();
             this.AddProdInHouseRadioButton = new System.Windows.Forms.RadioButton();
-            this.AddProdMachCompIDTextBox = new System.Windows.Forms.TextBox();
-            this.MachCompLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridPart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridAssociatedPart)).BeginInit();
             this.SuspendLayout();
@@ -301,7 +299,6 @@
             this.AddProdOutSourcedRadioButton.TabIndex = 43;
             this.AddProdOutSourcedRadioButton.Text = "Outsourced";
             this.AddProdOutSourcedRadioButton.UseVisualStyleBackColor = true;
-            this.AddProdOutSourcedRadioButton.CheckedChanged += new System.EventHandler(this.ModOutSourcedRadioButton_CheckedChanged);
             // 
             // AddProdInHouseRadioButton
             // 
@@ -315,25 +312,6 @@
             this.AddProdInHouseRadioButton.TabStop = true;
             this.AddProdInHouseRadioButton.Text = "In-House";
             this.AddProdInHouseRadioButton.UseVisualStyleBackColor = true;
-            this.AddProdInHouseRadioButton.CheckedChanged += new System.EventHandler(this.ModInHouseRadioButton_CheckedChanged);
-            // 
-            // AddProdMachCompIDTextBox
-            // 
-            this.AddProdMachCompIDTextBox.Location = new System.Drawing.Point(219, 770);
-            this.AddProdMachCompIDTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.AddProdMachCompIDTextBox.Name = "AddProdMachCompIDTextBox";
-            this.AddProdMachCompIDTextBox.Size = new System.Drawing.Size(194, 31);
-            this.AddProdMachCompIDTextBox.TabIndex = 45;
-            // 
-            // MachCompLabel
-            // 
-            this.MachCompLabel.AutoSize = true;
-            this.MachCompLabel.Location = new System.Drawing.Point(39, 772);
-            this.MachCompLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.MachCompLabel.Name = "MachCompLabel";
-            this.MachCompLabel.Size = new System.Drawing.Size(120, 25);
-            this.MachCompLabel.TabIndex = 44;
-            this.MachCompLabel.Text = "Machine ID";
             // 
             // AddProductForm
             // 
@@ -341,8 +319,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1504, 897);
-            this.Controls.Add(this.AddProdMachCompIDTextBox);
-            this.Controls.Add(this.MachCompLabel);
             this.Controls.Add(this.AddProdOutSourcedRadioButton);
             this.Controls.Add(this.AddProdInHouseRadioButton);
             this.Controls.Add(this.AddProductLabel);
@@ -408,7 +384,5 @@
         private System.Windows.Forms.Label AddProductLabel;
         private System.Windows.Forms.RadioButton AddProdOutSourcedRadioButton;
         private System.Windows.Forms.RadioButton AddProdInHouseRadioButton;
-        private System.Windows.Forms.Label MachCompLabel;
-        internal System.Windows.Forms.TextBox AddProdMachCompIDTextBox;
     }
 }

@@ -47,25 +47,25 @@ namespace Inventory_Management_System
             }
         }
 
-        private void ModInHouseRadioButton_CheckedChanged(object sendee, EventArgs e)
-        {
-            if (AddProdInHouseRadioButton.Checked == true)
-            {
-                MachCompLabel.Text = "Machine ID";
-                MachCompLabel.Name = "Machine ID";
-                MachCompLabel.Visible = true;
-            }
-        }
+        //private void ModInHouseRadioButton_CheckedChanged(object sendee, EventArgs e)
+        //{
+        //    if (AddProdInHouseRadioButton.Checked == true)
+        //    {
+        //        MachCompLabel.Text = "Machine ID";
+        //        MachCompLabel.Name = "Machine ID";
+        //        MachCompLabel.Visible = true;
+        //    }
+        //}
 
-        private void ModOutSourcedRadioButton_CheckedChanged(Object sendee, EventArgs e)
-        {
-            if (AddProdOutSourcedRadioButton.Checked == true)
-            {
-                MachCompLabel.Text = "Company Name";
-                MachCompLabel.Name = "Company Name";
-                MachCompLabel.Visible = true;
-            }
-        }
+        //private void ModOutSourcedRadioButton_CheckedChanged(Object sendee, EventArgs e)
+        //{
+        //    if (AddProdOutSourcedRadioButton.Checked == true)
+        //    {
+        //        MachCompLabel.Text = "Company Name";
+        //        MachCompLabel.Name = "Company Name";
+        //        MachCompLabel.Visible = true;
+        //    }
+        //}
         private void AddProductForm_Load(object sender, EventArgs e)
         {
             int nextProduct = Inventory.AllProducts.Max(product => product.ProductID) + 1;
@@ -102,20 +102,21 @@ namespace Inventory_Management_System
                 CompareMinMax(Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text));
                 CheckInvValues(Int32.Parse(AddProdInventoryTextBox.Text), Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text));
 
-                int AddPartPartID = Int32.Parse(AddProdIDTextBox.Text);
+                int AddProdProductID = Int32.Parse(AddProdIDTextBox.Text);
 
-                if (AddProdInHouseRadioButton.Checked)
+                //Product newProduct = new Product (AddProdProductID, AddProdNameTextBox.Text, Decimal.Parse(AddProdPriceCostTextBox.Text), Int32.Parse(AddProdInventoryTextBox.Text), Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text));
+
+                Product newProduct = new Product
                 {
-                    Part inHouse = new InHouse(AddPartPartID, AddProdNameTextBox.Text, Decimal.Parse(AddProdPriceCostTextBox.Text), Int32.Parse(AddProdInventoryTextBox.Text), Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text), Int32.Parse(AddProdMachCompIDTextBox.Text));
+                    ProductID = AddProdProductID,
+                    Name = AddProdNameTextBox.Text,
+                    Price = Decimal.Parse(AddProdPriceCostTextBox.Text),
+                    InStock = Int32.Parse(AddProdInventoryTextBox.Text),
+                    Min = Int32.Parse(AddProdMinTextBox.Text),
+                    Max = Int32.Parse(AddProdMaxTextBox.Text)
+                };
 
-                    Inventory.AllParts.Add(inHouse);
-                }
-                else if (AddProdOutSourcedRadioButton.Checked)
-                {
-                    Part OutSourced = new OutSourced(AddPartPartID, AddProdNameTextBox.Text, Decimal.Parse(AddProdPriceCostTextBox.Text), Int32.Parse(AddProdInventoryTextBox.Text), Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text), AddProdMachCompIDTextBox.Text);
-
-                    Inventory.AllParts.Add(OutSourced);
-                }
+                Inventory.AllProducts.Add(newProduct);
 
                 this.Close();
 

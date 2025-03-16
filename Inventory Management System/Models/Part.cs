@@ -9,15 +9,15 @@ namespace Inventory_Management_System.Models
 {
     public abstract class Part
     {
-        protected Part(int partID, string name, decimal price, int inStock, int min, int max)
-        {
-            PartID = partID;
-            Name = name;
-            Price = price;
-            InStock = inStock;
-            Min = min;
-            Max = max;
-        }
+        //protected Part(int partID, string name, decimal price, int inStock, int min, int max)
+        //{
+        //    PartID = partID;
+        //    Name = name;
+        //    Price = price;
+        //    InStock = inStock;
+        //    Min = min;
+        //    Max = max;
+        //}
 
         // Properties
         public int PartID { get; set; }

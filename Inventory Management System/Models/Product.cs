@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.Security.Cryptography.X509Certificates;
+using System.IO.Ports;
 
 namespace Inventory_Management_System.Models
 {
@@ -18,6 +19,16 @@ namespace Inventory_Management_System.Models
         public int InStock { get; set; }
         public int Min { get; set; }
         public int Max { get; set; }
+
+        //public Product(int productID, string name, decimal price, int inStock, int min, int max)
+        //{
+        //    ProductID = productID;
+        //    Name = name;
+        //    Price = price;
+        //    InStock = inStock;
+        //    Min = min;
+        //    Max = max;
+        //}
 
         //Creates a binding list called "Product"
         //public static BindingList<Product> products = new BindingList<Product>();

@@ -12,7 +12,6 @@ namespace Inventory_Management_System.Models
 
         // Constructor for the derived class
         public InHouse(int partID, string name, decimal price, int inStock, int min, int max, int machineID)
-            : base(partID, name, price, inStock, min, max)
         {
            MachineID = machineID;
         }
