@@ -33,15 +33,15 @@ namespace Inventory_Management_System.Models
             Part widgetPart5 = new InHouse(5, "PSU", 99.9m, 100, 10, 1000, 002);
             Part widgetPart6 = new InHouse(6, "CMOS", 99.9m, 100, 10, 1000, 003);
 
-            //Part widgetPart1 = new OutSourced
+            //Part widgetPart4 = new InHouse
             //{
-            //    PartID = 1,
-            //    Name = "CPU",
-            //    Price = 299.9m,
+            //    PartID = 4,
+            //    Name = "NIC",
+            //    Price = 49.9m,
             //    InStock = 100,
             //    Min = 10,
             //    Max = 1000,
-            //    CompanyName = "Intel"
+            //    MachineID = 001
             //};
 
             // Add parts to the parts list

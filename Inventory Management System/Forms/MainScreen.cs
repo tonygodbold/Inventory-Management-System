@@ -25,10 +25,13 @@ namespace Inventory_Management_System
 
         private void display() // re-populate the DGV using the current MyList 
         {
-            //DataGridPart.AutoGenerateColumns = false;
+            DataGridPart.DataSource = null;
             DataGridPart.DataSource = Inventory.AllParts;
+            DataGridPart.Refresh();
+
+            DataGridProduct.DataSource = null;
             DataGridProduct.DataSource = Inventory.AllProducts;
-            //DataGridPart.ClearSelection();
+            DataGridProduct.Refresh();
         }
 
         private void formatDGV(DataGridView d)
@@ -42,6 +45,7 @@ namespace Inventory_Management_System
             d.AllowUserToAddRows = false;
             d.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             d.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            d.AutoGenerateColumns = true;
 
             foreach (DataGridViewColumn column in d.Columns)
             {
