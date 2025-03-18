@@ -86,8 +86,13 @@ namespace Inventory_Management_System
 
         private void button1_Click(object sender, EventArgs e)
         {
+
             AddPartForm addPartForm = new AddPartForm(); // Instantiate the new form
             addPartForm.Show(); // Show the new form
+
+            MainScreen mainScreen = new MainScreen();
+            mainScreen.Hide();
+
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -172,9 +177,30 @@ namespace Inventory_Management_System
                 return;
             }
 
-            Part P = DataGridPart.CurrentRow.DataBoundItem as Part;
-            Inventory.AllParts.Remove(P);
+            // Show confirmation dialog
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to delete this product?",
+                "Delete Confirmation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            // Check the user's choice
+            if (result == DialogResult.Yes)
+            {
+                // Logic to delete the product
+                MessageBox.Show("Part has been deleted.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Part P = DataGridPart.CurrentRow.DataBoundItem as Part;
+                Inventory.AllParts.Remove(P);
+            }
+            else
+            {
+                // Logic for cancelling the delete action
+                MessageBox.Show("Delete action has been cancelled.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
+
 
         private void myBindingCompleteProduct(object sender, DataGridViewBindingCompleteEventArgs e)
         {
@@ -195,8 +221,28 @@ namespace Inventory_Management_System
                 return;
             }
 
-            Product P = DataGridProduct.CurrentRow.DataBoundItem as Product;
-            Inventory.AllProducts.Remove(P);
+            // Show confirmation dialog
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to delete this product?",
+                "Delete Confirmation",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning
+            );
+
+            // Check the user's choice
+            if (result == DialogResult.Yes)
+            {
+                // Logic to delete the product
+                MessageBox.Show("Product has been deleted.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                Product P = DataGridProduct.CurrentRow.DataBoundItem as Product;
+                Inventory.AllProducts.Remove(P);
+            }
+            else
+            {
+                // Logic for cancelling the delete action
+                MessageBox.Show("Delete action has been cancelled.", "Cancelled", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void SearchButtonProduct_Click(object sender, EventArgs e)

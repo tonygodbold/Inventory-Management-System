@@ -51,8 +51,6 @@
             this.AllCandidatePartsLabel = new System.Windows.Forms.Label();
             this.PartsAssociatedWithThisProductLabel = new System.Windows.Forms.Label();
             this.AddProductLabel = new System.Windows.Forms.Label();
-            this.AddProdOutSourcedRadioButton = new System.Windows.Forms.RadioButton();
-            this.AddProdInHouseRadioButton = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridPart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridAssociatedPart)).BeginInit();
             this.SuspendLayout();
@@ -62,6 +60,7 @@
             this.AddProdIDTextBox.Location = new System.Drawing.Point(68, 220);
             this.AddProdIDTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.AddProdIDTextBox.Name = "AddProdIDTextBox";
+            this.AddProdIDTextBox.ReadOnly = true;
             this.AddProdIDTextBox.Size = new System.Drawing.Size(194, 31);
             this.AddProdIDTextBox.TabIndex = 30;
             // 
@@ -257,6 +256,7 @@
             this.SaveButton.TabIndex = 37;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // AllCandidatePartsLabel
             // 
@@ -289,38 +289,12 @@
             this.AddProductLabel.TabIndex = 41;
             this.AddProductLabel.Text = "Add Product";
             // 
-            // AddProdOutSourcedRadioButton
-            // 
-            this.AddProdOutSourcedRadioButton.AutoSize = true;
-            this.AddProdOutSourcedRadioButton.Location = new System.Drawing.Point(356, 142);
-            this.AddProdOutSourcedRadioButton.Margin = new System.Windows.Forms.Padding(4);
-            this.AddProdOutSourcedRadioButton.Name = "AddProdOutSourcedRadioButton";
-            this.AddProdOutSourcedRadioButton.Size = new System.Drawing.Size(154, 29);
-            this.AddProdOutSourcedRadioButton.TabIndex = 43;
-            this.AddProdOutSourcedRadioButton.Text = "Outsourced";
-            this.AddProdOutSourcedRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // AddProdInHouseRadioButton
-            // 
-            this.AddProdInHouseRadioButton.AutoSize = true;
-            this.AddProdInHouseRadioButton.Checked = true;
-            this.AddProdInHouseRadioButton.Location = new System.Drawing.Point(80, 142);
-            this.AddProdInHouseRadioButton.Margin = new System.Windows.Forms.Padding(4);
-            this.AddProdInHouseRadioButton.Name = "AddProdInHouseRadioButton";
-            this.AddProdInHouseRadioButton.Size = new System.Drawing.Size(129, 29);
-            this.AddProdInHouseRadioButton.TabIndex = 42;
-            this.AddProdInHouseRadioButton.TabStop = true;
-            this.AddProdInHouseRadioButton.Text = "In-House";
-            this.AddProdInHouseRadioButton.UseVisualStyleBackColor = true;
-            // 
             // AddProductForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1504, 897);
-            this.Controls.Add(this.AddProdOutSourcedRadioButton);
-            this.Controls.Add(this.AddProdInHouseRadioButton);
             this.Controls.Add(this.AddProductLabel);
             this.Controls.Add(this.PartsAssociatedWithThisProductLabel);
             this.Controls.Add(this.AllCandidatePartsLabel);
@@ -382,7 +356,5 @@
         private System.Windows.Forms.Label AllCandidatePartsLabel;
         private System.Windows.Forms.Label PartsAssociatedWithThisProductLabel;
         private System.Windows.Forms.Label AddProductLabel;
-        private System.Windows.Forms.RadioButton AddProdOutSourcedRadioButton;
-        private System.Windows.Forms.RadioButton AddProdInHouseRadioButton;
     }
 }
