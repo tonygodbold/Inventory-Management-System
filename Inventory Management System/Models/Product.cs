@@ -20,16 +20,6 @@ namespace Inventory_Management_System.Models
         public int Min { get; set; }
         public int Max { get; set; }
 
-        //public Product(int productID, string name, decimal price, int inStock, int min, int max)
-        //{
-        //    ProductID = productID;
-        //    Name = name;
-        //    Price = price;
-        //    InStock = inStock;
-        //    Min = min;
-        //    Max = max;
-        //}
-
         //Creates a binding list called "Product"
         //public static BindingList<Product> products = new BindingList<Product>();
         public static BindingList<Part> AssociatedParts { get; set; }
