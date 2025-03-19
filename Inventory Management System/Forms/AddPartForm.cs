@@ -51,15 +51,7 @@ namespace Inventory_Management_System
                     Inventory.AllParts.Add(OutSourced);
                 }
 
-
-
                 this.Close();
-
-                //MainScreen mainScreen = new MainScreen();
-                //mainScreen.Show();
-
-                //DataGridPart.DataSource = null;
-                //DataGridPart.DataSource = Inventory.AllParts;
 
             }
             catch (Exception x)

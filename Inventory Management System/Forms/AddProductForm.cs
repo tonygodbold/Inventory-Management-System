@@ -17,6 +17,7 @@ namespace Inventory_Management_System
         {
             InitializeComponent();
             formatDGV(DataGridPart);
+            formatDGV(DataGridAssociatedPart);
             display();
 
         }
@@ -28,6 +29,7 @@ namespace Inventory_Management_System
         private void display() // re-populate the DGV using the current MyList 
         {
             DataGridPart.DataSource = Inventory.AllParts;
+            DataGridAssociatedPart.DataSource = Product.AssociatedParts;
         }
         private void formatDGV(DataGridView d)
         {
@@ -47,25 +49,6 @@ namespace Inventory_Management_System
             }
         }
 
-        //private void ModInHouseRadioButton_CheckedChanged(object sendee, EventArgs e)
-        //{
-        //    if (AddProdInHouseRadioButton.Checked == true)
-        //    {
-        //        MachCompLabel.Text = "Machine ID";
-        //        MachCompLabel.Name = "Machine ID";
-        //        MachCompLabel.Visible = true;
-        //    }
-        //}
-
-        //private void ModOutSourcedRadioButton_CheckedChanged(Object sendee, EventArgs e)
-        //{
-        //    if (AddProdOutSourcedRadioButton.Checked == true)
-        //    {
-        //        MachCompLabel.Text = "Company Name";
-        //        MachCompLabel.Name = "Company Name";
-        //        MachCompLabel.Visible = true;
-        //    }
-        //}
         private void AddProductForm_Load(object sender, EventArgs e)
         {
             int nextProduct = Inventory.AllProducts.Max(product => product.ProductID) + 1;
@@ -95,6 +78,23 @@ namespace Inventory_Management_System
                 DataGridPart.DataSource = Inventory.AllParts;
             }
         }
+        
+        public static void CompareMinMax(int min, int max)
+        {
+            if (min > max)
+            {
+                throw new Exception("Minium value cannot be greater than Max value.");
+            }
+        }
+
+        public static void CheckInvValues(int inv, int min, int max)
+        {
+            if (inv < min || inv > max)
+            {
+                throw new Exception("Inventory cannot be greater than Max or less than Minium.");
+            }
+        }
+
         public void SaveButton_Click(object sender, EventArgs e)
         {
             try
@@ -126,19 +126,23 @@ namespace Inventory_Management_System
                 MessageBox.Show(x.Message);
             }
         }
-        public static void CompareMinMax(int min, int max)
-        {
-            if (min > max)
-            {
-                throw new Exception("Minium value cannot be greater than Max value.");
-            }
-        }
 
-        public static void CheckInvValues(int inv, int min, int max)
+        private void AddButton_Click(object sender, EventArgs e)
         {
-            if (inv < min || inv > max)
+            if (DataGridPart.CurrentRow == null || !DataGridPart.CurrentRow.Selected)
             {
-                throw new Exception("Inventory cannot be greater than Max or less than Minium.");
+                MessageBox.Show("Nothing selected!", "Please select a part to add");
+                return;
+            }
+
+            else 
+            {
+                Part P = DataGridPart.CurrentRow.DataBoundItem as Part;
+                Product.addAssociatedPart
+                DataGridAssociatedPart.Refresh();
+                Inventory.AllParts.Remove(P);
+                DataGridPart.Refresh();
+                return;
             }
         }
     }
