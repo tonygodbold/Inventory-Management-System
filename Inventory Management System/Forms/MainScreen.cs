@@ -30,7 +30,7 @@ namespace Inventory_Management_System
             DataGridPart.Refresh();
 
             DataGridProduct.DataSource = null;
-            DataGridProduct.DataSource = Inventory.AllProducts;
+            DataGridProduct.DataSource = Inventory.Products;
             DataGridProduct.Refresh();
         }
 
@@ -236,7 +236,7 @@ namespace Inventory_Management_System
                 MessageBox.Show("Product has been deleted.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 Product P = DataGridProduct.CurrentRow.DataBoundItem as Product;
-                Inventory.AllProducts.Remove(P);
+                Inventory.Products.Remove(P);
             }
             else
             {
@@ -251,11 +251,11 @@ namespace Inventory_Management_System
             bool found = false;
             if (SearchFieldProduct.Text != "")
             {
-                for (int i = 0; i < Inventory.AllProducts.Count; i++)
+                for (int i = 0; i < Inventory.Products.Count; i++)
                 {
-                    if (Inventory.AllProducts[i].Name.ToUpper().Contains(SearchFieldProduct.Text.ToUpper()))
+                    if (Inventory.Products[i].Name.ToUpper().Contains(SearchFieldProduct.Text.ToUpper()))
                     {
-                        TempList.Add(Inventory.AllProducts[i]);
+                        TempList.Add(Inventory.Products[i]);
                         found = true;
                     }
                 }
@@ -265,7 +265,7 @@ namespace Inventory_Management_System
             if (!found)
             {
                 MessageBox.Show("Nothing found.");
-                DataGridProduct.DataSource = Inventory.AllProducts;
+                DataGridProduct.DataSource = Inventory.Products;
             }
         }
     }

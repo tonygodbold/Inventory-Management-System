@@ -22,7 +22,7 @@ namespace Inventory_Management_System.Models
 
         //Creates a binding list called "Product"
         //public static BindingList<Product> products = new BindingList<Product>();
-        public static BindingList<Part> AssociatedParts { get; set; }
+        public BindingList<Part> AssociatedParts { get; set; } = new BindingList<Part>();
 
         public static int CurrentIndexPart { get; set; }
         public static int CurrentIndexAssociatedPart { get; set; }

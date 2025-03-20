@@ -13,6 +13,11 @@ namespace Inventory_Management_System
 {
     public partial class AddProductForm : Form
     {
+        //instance of a Product class
+        Product product1 = new Product();
+
+
+        //Constructor
         public AddProductForm()
         {
             InitializeComponent();
@@ -29,7 +34,9 @@ namespace Inventory_Management_System
         private void display() // re-populate the DGV using the current MyList 
         {
             DataGridPart.DataSource = Inventory.AllParts;
-            DataGridAssociatedPart.DataSource = Product.AssociatedParts;
+            //DataGridAssociatedPart.DataSource = Product.AssociatedParts;
+
+            DataGridAssociatedPart.DataSource = product1.AssociatedParts;
         }
         private void formatDGV(DataGridView d)
         {
@@ -127,20 +134,19 @@ namespace Inventory_Management_System
             }
         }
 
+        //dgvAssociated should display the associated parts 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            if (Product.CurrentIndexPart >= 0)
-            {
-
-
-                Inventory.Products[Product.CurrentIndexPart].AssociatedParts.Add(Product.AssociatedParts[cbxUpper.SelectedIndex]);
-                DataGridAssociatedPart.DataSource = Inventory.AllParts[Product.CurrentIndexPart].AssociatedParts;
-            }
-
-            else
+            if (!DataGridPart.CurrentRow.Selected)
             {
                 MessageBox.Show("Nothing selected!", "Please select a part to add");
                 return;
+            }
+            else
+            {
+                Part part = (Part)DataGridPart.CurrentRow.DataBoundItem; //Grabs current row | Casts DataBoundItem into a type Part
+
+                product1.addAssociatedPart(part);
             }
         }
 
@@ -151,12 +157,12 @@ namespace Inventory_Management_System
 
         private void DataGridPart_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0)
-            {
-                Product.CurrentIndexAssociatedPart = e.RowIndex;
-                Inventory.AllProducts[Product.CurrentIndexPart].AssociatedParts.RemoveAt(Product.CurrentIndexAssociatedPart);
-                DataGridAssociatedPart.DataSource = Inventory.AllParts[Product.CurrentIndexPart].AssociatedParts;
-            }
+        //    if (e.RowIndex >= 0)
+        //    {
+        //        Product.CurrentIndexAssociatedPart = e.RowIndex;
+        //        Inventory.Products[Product.CurrentIndexPart].AssociatedParts.RemoveAt(Product.CurrentIndexAssociatedPart);
+        //        DataGridAssociatedPart.DataSource = Inventory.AllParts[Product.CurrentIndexPart].AssociatedParts;
+        //    }
         }
     }
 }
