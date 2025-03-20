@@ -51,7 +51,7 @@ namespace Inventory_Management_System
 
         private void AddProductForm_Load(object sender, EventArgs e)
         {
-            int nextProduct = Inventory.AllProducts.Max(product => product.ProductID) + 1;
+            int nextProduct = Inventory.Products.Max(product => product.ProductID) + 1;
             AddProdIDTextBox.Text = nextProduct.ToString();
         }
 
@@ -116,7 +116,7 @@ namespace Inventory_Management_System
                     Max = Int32.Parse(AddProdMaxTextBox.Text)
                 };
 
-                Inventory.AllProducts.Add(newProduct);
+                Inventory.Products.Add(newProduct);
 
                 this.Close();
 
@@ -129,20 +129,33 @@ namespace Inventory_Management_System
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            if (DataGridPart.CurrentRow == null || !DataGridPart.CurrentRow.Selected)
+            if (Product.CurrentIndexPart >= 0)
+            {
+
+
+                Inventory.Products[Product.CurrentIndexPart].AssociatedParts.Add(Product.AssociatedParts[cbxUpper.SelectedIndex]);
+                DataGridAssociatedPart.DataSource = Inventory.AllParts[Product.CurrentIndexPart].AssociatedParts;
+            }
+
+            else
             {
                 MessageBox.Show("Nothing selected!", "Please select a part to add");
                 return;
             }
+        }
 
-            else 
+        private void DataGridPart_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void DataGridPart_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
             {
-                Part P = DataGridPart.CurrentRow.DataBoundItem as Part;
-                Product.addAssociatedPart
-                DataGridAssociatedPart.Refresh();
-                Inventory.AllParts.Remove(P);
-                DataGridPart.Refresh();
-                return;
+                Product.CurrentIndexAssociatedPart = e.RowIndex;
+                Inventory.AllProducts[Product.CurrentIndexPart].AssociatedParts.RemoveAt(Product.CurrentIndexAssociatedPart);
+                DataGridAssociatedPart.DataSource = Inventory.AllParts[Product.CurrentIndexPart].AssociatedParts;
             }
         }
     }

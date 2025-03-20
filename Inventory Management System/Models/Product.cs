@@ -24,6 +24,9 @@ namespace Inventory_Management_System.Models
         //public static BindingList<Product> products = new BindingList<Product>();
         public static BindingList<Part> AssociatedParts { get; set; }
 
+        public static int CurrentIndexPart { get; set; }
+        public static int CurrentIndexAssociatedPart { get; set; }
+
         // Method to add an associated part
         public void addAssociatedPart(Part part)
         {

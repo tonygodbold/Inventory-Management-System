@@ -14,7 +14,7 @@ namespace Inventory_Management_System.Models
     public class Inventory
     {
         // Properties to store products and parts
-        public static BindingList<Product> AllProducts { get; set; } = new BindingList<Product>();
+        public static BindingList<Product> Products { get; set; } = new BindingList<Product>();
         public static BindingList<Part> AllParts { get; set; } = new BindingList<Part>();
 
         public static BindingList<Product> GetProducts { get; set; }
@@ -115,18 +115,18 @@ namespace Inventory_Management_System.Models
                 Max = 1000
             };
 
-            Inventory.AllProducts.Add(widgetProduct1);
-            Inventory.AllProducts.Add(widgetProduct2);
-            Inventory.AllProducts.Add(widgetProduct3);
-            Inventory.AllProducts.Add(widgetProduct4);
-            Inventory.AllProducts.Add(widgetProduct5);
-            Inventory.AllProducts.Add(widgetProduct6);
+            Inventory.Products.Add(widgetProduct1);
+            Inventory.Products.Add(widgetProduct2);
+            Inventory.Products.Add(widgetProduct3);
+            Inventory.Products.Add(widgetProduct4);
+            Inventory.Products.Add(widgetProduct5);
+            Inventory.Products.Add(widgetProduct6);
         }
 
         // Method to add a product to the inventory
         public void addProduct(Product product)
         {
-            Inventory.AllProducts.Add(product);
+            Inventory.Products.Add(product);
         }
 
         // Method to remove a product from the inventory by its ID
@@ -136,7 +136,7 @@ namespace Inventory_Management_System.Models
             var product = lookupProduct(productId); // Find the product by its ID
             if (product != null) // If product is found
             {
-                Inventory.AllProducts.Remove(product); // Remove it from the list
+                Inventory.Products.Remove(product); // Remove it from the list
                 return true; // Indicate that removal was successful
             }
             return false; // Indicate that the product was not found
@@ -146,7 +146,7 @@ namespace Inventory_Management_System.Models
         // Returns the product if found, otherwise returns null
         public Product lookupProduct(int productID)
         {
-            foreach (var product in AllProducts) // Iterate through the list of products
+            foreach (var product in Products) // Iterate through the list of products
             {
                 if (product.ProductID == productID) // If a product with the given ID is found
                     return product; // Return the product
@@ -170,8 +170,8 @@ namespace Inventory_Management_System.Models
             var product = lookupProduct(productId); // Find the product by its ID
             if (product != null) // If product is found
             {
-                var index = AllProducts.IndexOf(product); // Get the index of the product in the list
-                AllProducts[index] = updatedProduct; // Replace the old product with the updated one
+                var index = Products.IndexOf(product); // Get the index of the product in the list
+                Products[index] = updatedProduct; // Replace the old product with the updated one
             }
         }
 

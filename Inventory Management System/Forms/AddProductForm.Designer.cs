@@ -175,6 +175,8 @@
             this.DataGridPart.RowTemplate.Height = 33;
             this.DataGridPart.Size = new System.Drawing.Size(866, 225);
             this.DataGridPart.TabIndex = 31;
+            this.DataGridPart.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridPart_CellClick);
+            this.DataGridPart.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridPart_CellContentClick);
             // 
             // SearchButton
             // 

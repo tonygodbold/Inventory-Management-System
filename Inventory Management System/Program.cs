@@ -16,6 +16,10 @@ namespace Inventory_Management_System
         [STAThread]
         static void Main()
         {
+
+            Product.CurrentIndexPart = -1;
+            Product.CurrentIndexAssociatedPart = -1;
+
             Inventory.SetStartingParts();
             Inventory.SetStartingProducts();
             Application.EnableVisualStyles();
