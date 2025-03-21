@@ -21,7 +21,8 @@ namespace Inventory_Management_System.Models
         public static BindingList<Part> GetParts { get; set; }
 
         public static int CurrentIndex { get; set; }
-        public static Part CurrentObject { get; set; }
+        public static Part CurrentPart { get; set; }
+        public static Product CurrentProduct { get; set; }
 
         public static void SetStartingParts()
         {
@@ -32,17 +33,6 @@ namespace Inventory_Management_System.Models
             Part widgetPart4 = new InHouse(4, "NIC", 49.9m, 100, 10, 1000, 001);
             Part widgetPart5 = new InHouse(5, "PSU", 99.9m, 100, 10, 1000, 002);
             Part widgetPart6 = new InHouse(6, "CMOS", 99.9m, 100, 10, 1000, 003);
-
-            //Part widgetPart4 = new InHouse
-            //{
-            //    PartID = 4,
-            //    Name = "NIC",
-            //    Price = 49.9m,
-            //    InStock = 100,
-            //    Min = 10,
-            //    Max = 1000,
-            //    MachineID = 001
-            //};
 
             // Add parts to the parts list
             Inventory.AllParts.Add(widgetPart1);

@@ -153,23 +153,23 @@ namespace Inventory_Management_System
             }
         }
 
-        private void ModMachCompTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (ModInHouseRadioButton.Checked)
-            {
-                if (string.IsNullOrWhiteSpace(ModMachCompTextBox.Text) || !(int.TryParse(ModMachCompTextBox.Text, out int x)))
-                {
-                    ModPartSaveButton.Enabled = false;
-                }
-            }
-            if (ModOutSourcedRadioButton.Checked)
-            {
-                if (string.IsNullOrWhiteSpace(ModMachCompTextBox.Text))
-                {
-                    ModPartSaveButton.Enabled = false;
-                }
-            }
-        }
+        //private void ModMachCompTextBox_TextChanged(object sender, EventArgs e)
+        //{
+        //    if (ModInHouseRadioButton.Checked)
+        //    {
+        //        if (string.IsNullOrWhiteSpace(ModMachCompTextBox.Text) || !(int.TryParse(ModMachCompTextBox.Text, out int x)))
+        //        {
+        //            ModPartSaveButton.Enabled = false;
+        //        }
+        //    }
+        //    if (ModOutSourcedRadioButton.Checked)
+        //    {
+        //        if (string.IsNullOrWhiteSpace(ModMachCompTextBox.Text))
+        //        {
+        //            ModPartSaveButton.Enabled = false;
+        //        }
+        //    }
+        //}
 
         private static void CompareMinMax(int min, int max)
         {
@@ -266,21 +266,21 @@ namespace Inventory_Management_System
         private void ModifyPartForm_Load(object sender, EventArgs e)
         {
             // Assuming Inventory.CurrentIndex is an integer or a string
-            if (Inventory.CurrentObject != null)
+            if (Inventory.CurrentPart != null)
             {
-                ModIDTextBox.Text = Inventory.CurrentObject.PartID.ToString();
-                ModPartNameTextBox.Text = Inventory.CurrentObject.Name.ToString();
-                ModInvTextBox.Text = Inventory.CurrentObject.InStock.ToString();
-                ModPriceTextBox.Text = Inventory.CurrentObject.Price.ToString();
-                ModMinTextBox.Text = Inventory.CurrentObject.Min.ToString();
-                ModMaxTextBox.Text = Inventory.CurrentObject.Max.ToString();
+                ModIDTextBox.Text = Inventory.CurrentPart.PartID.ToString();
+                ModPartNameTextBox.Text = Inventory.CurrentPart.Name.ToString();
+                ModInvTextBox.Text = Inventory.CurrentPart.InStock.ToString();
+                ModPriceTextBox.Text = Inventory.CurrentPart.Price.ToString();
+                ModMinTextBox.Text = Inventory.CurrentPart.Min.ToString();
+                ModMaxTextBox.Text = Inventory.CurrentPart.Max.ToString();
 
-                if (Inventory.CurrentObject is InHouse inHousePart)
+                if (Inventory.CurrentPart is InHouse inHousePart)
                 {
                     ModInHouseRadioButton.Checked = true;
                     ModMachCompTextBox.Text = inHousePart.MachineID.ToString();
                 }
-                else if (Inventory.CurrentObject is OutSourced outSourcedPart)
+                else if (Inventory.CurrentPart is OutSourced outSourcedPart)
                 {
                     ModOutSourcedRadioButton.Checked = true;
                     ModMachCompTextBox.Text = outSourcedPart.CompanyName;

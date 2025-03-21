@@ -28,16 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.IDTextBox = new System.Windows.Forms.TextBox();
-            this.MaxTextBox = new System.Windows.Forms.TextBox();
-            this.MachineIDTextBox = new System.Windows.Forms.TextBox();
-            this.MinTextBox = new System.Windows.Forms.TextBox();
-            this.PriceCostTextBox = new System.Windows.Forms.TextBox();
-            this.InventoryTextBox = new System.Windows.Forms.TextBox();
-            this.NameTextBox = new System.Windows.Forms.TextBox();
-            this.MachCompLabel = new System.Windows.Forms.Label();
-            this.ModProdOutsourcedRadioButton = new System.Windows.Forms.RadioButton();
-            this.ModProdInHouseRadioButton = new System.Windows.Forms.RadioButton();
+            this.ModProdIDTextBox = new System.Windows.Forms.TextBox();
+            this.ModProdMaxTextBox = new System.Windows.Forms.TextBox();
+            this.ModProdMinTextBox = new System.Windows.Forms.TextBox();
+            this.ModProdPriceTextBox = new System.Windows.Forms.TextBox();
+            this.ModProdStockTextBox = new System.Windows.Forms.TextBox();
+            this.ModProdNameTextBox = new System.Windows.Forms.TextBox();
             this.MaxLabel = new System.Windows.Forms.Label();
             this.MinLabel = new System.Windows.Forms.Label();
             this.PriceCostLabel = new System.Windows.Forms.Label();
@@ -59,97 +55,53 @@
             ((System.ComponentModel.ISupportInitialize)(this.DataGridPart)).BeginInit();
             this.SuspendLayout();
             // 
-            // IDTextBox
+            // ModProdIDTextBox
             // 
-            this.IDTextBox.Location = new System.Drawing.Point(80, 229);
-            this.IDTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.IDTextBox.Name = "IDTextBox";
-            this.IDTextBox.Size = new System.Drawing.Size(194, 31);
-            this.IDTextBox.TabIndex = 37;
+            this.ModProdIDTextBox.Location = new System.Drawing.Point(80, 229);
+            this.ModProdIDTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.ModProdIDTextBox.Name = "ModProdIDTextBox";
+            this.ModProdIDTextBox.Size = new System.Drawing.Size(194, 31);
+            this.ModProdIDTextBox.TabIndex = 37;
             // 
-            // MaxTextBox
+            // ModProdMaxTextBox
             // 
-            this.MaxTextBox.Location = new System.Drawing.Point(374, 660);
-            this.MaxTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.MaxTextBox.Name = "MaxTextBox";
-            this.MaxTextBox.Size = new System.Drawing.Size(194, 31);
-            this.MaxTextBox.TabIndex = 36;
+            this.ModProdMaxTextBox.Location = new System.Drawing.Point(374, 660);
+            this.ModProdMaxTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.ModProdMaxTextBox.Name = "ModProdMaxTextBox";
+            this.ModProdMaxTextBox.Size = new System.Drawing.Size(194, 31);
+            this.ModProdMaxTextBox.TabIndex = 36;
             // 
-            // MachineIDTextBox
+            // ModProdMinTextBox
             // 
-            this.MachineIDTextBox.Location = new System.Drawing.Point(219, 770);
-            this.MachineIDTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.MachineIDTextBox.Name = "MachineIDTextBox";
-            this.MachineIDTextBox.Size = new System.Drawing.Size(194, 31);
-            this.MachineIDTextBox.TabIndex = 35;
+            this.ModProdMinTextBox.Location = new System.Drawing.Point(98, 662);
+            this.ModProdMinTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.ModProdMinTextBox.Name = "ModProdMinTextBox";
+            this.ModProdMinTextBox.Size = new System.Drawing.Size(194, 31);
+            this.ModProdMinTextBox.TabIndex = 34;
             // 
-            // MinTextBox
+            // ModProdPriceTextBox
             // 
-            this.MinTextBox.Location = new System.Drawing.Point(98, 662);
-            this.MinTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.MinTextBox.Name = "MinTextBox";
-            this.MinTextBox.Size = new System.Drawing.Size(194, 31);
-            this.MinTextBox.TabIndex = 34;
+            this.ModProdPriceTextBox.Location = new System.Drawing.Point(174, 558);
+            this.ModProdPriceTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.ModProdPriceTextBox.Name = "ModProdPriceTextBox";
+            this.ModProdPriceTextBox.Size = new System.Drawing.Size(194, 31);
+            this.ModProdPriceTextBox.TabIndex = 33;
             // 
-            // PriceCostTextBox
+            // ModProdStockTextBox
             // 
-            this.PriceCostTextBox.Location = new System.Drawing.Point(174, 558);
-            this.PriceCostTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.PriceCostTextBox.Name = "PriceCostTextBox";
-            this.PriceCostTextBox.Size = new System.Drawing.Size(194, 31);
-            this.PriceCostTextBox.TabIndex = 33;
+            this.ModProdStockTextBox.Location = new System.Drawing.Point(148, 452);
+            this.ModProdStockTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.ModProdStockTextBox.Name = "ModProdStockTextBox";
+            this.ModProdStockTextBox.Size = new System.Drawing.Size(194, 31);
+            this.ModProdStockTextBox.TabIndex = 32;
             // 
-            // InventoryTextBox
+            // ModProdNameTextBox
             // 
-            this.InventoryTextBox.Location = new System.Drawing.Point(148, 452);
-            this.InventoryTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.InventoryTextBox.Name = "InventoryTextBox";
-            this.InventoryTextBox.Size = new System.Drawing.Size(194, 31);
-            this.InventoryTextBox.TabIndex = 32;
-            // 
-            // NameTextBox
-            // 
-            this.NameTextBox.Location = new System.Drawing.Point(116, 331);
-            this.NameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(194, 31);
-            this.NameTextBox.TabIndex = 31;
-            // 
-            // MachCompLabel
-            // 
-            this.MachCompLabel.AutoSize = true;
-            this.MachCompLabel.Location = new System.Drawing.Point(42, 771);
-            this.MachCompLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.MachCompLabel.Name = "MachCompLabel";
-            this.MachCompLabel.Size = new System.Drawing.Size(120, 25);
-            this.MachCompLabel.TabIndex = 28;
-            this.MachCompLabel.Text = "Machine ID";
-            // 
-            // ModProdOutsourcedRadioButton
-            // 
-            this.ModProdOutsourcedRadioButton.AutoSize = true;
-            this.ModProdOutsourcedRadioButton.Location = new System.Drawing.Point(356, 142);
-            this.ModProdOutsourcedRadioButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ModProdOutsourcedRadioButton.Name = "ModProdOutsourcedRadioButton";
-            this.ModProdOutsourcedRadioButton.Size = new System.Drawing.Size(154, 29);
-            this.ModProdOutsourcedRadioButton.TabIndex = 27;
-            this.ModProdOutsourcedRadioButton.TabStop = true;
-            this.ModProdOutsourcedRadioButton.Text = "Outsourced";
-            this.ModProdOutsourcedRadioButton.UseVisualStyleBackColor = true;
-            this.ModProdOutsourcedRadioButton.CheckedChanged += new System.EventHandler(this.ModOutSourcedRadioButton_CheckedChanged);
-            // 
-            // ModProdInHouseRadioButton
-            // 
-            this.ModProdInHouseRadioButton.AutoSize = true;
-            this.ModProdInHouseRadioButton.Location = new System.Drawing.Point(80, 142);
-            this.ModProdInHouseRadioButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.ModProdInHouseRadioButton.Name = "ModProdInHouseRadioButton";
-            this.ModProdInHouseRadioButton.Size = new System.Drawing.Size(129, 29);
-            this.ModProdInHouseRadioButton.TabIndex = 26;
-            this.ModProdInHouseRadioButton.TabStop = true;
-            this.ModProdInHouseRadioButton.Text = "In-House";
-            this.ModProdInHouseRadioButton.UseVisualStyleBackColor = true;
-            this.ModProdInHouseRadioButton.CheckedChanged += new System.EventHandler(this.ModInHouseRadioButton_CheckedChanged);
+            this.ModProdNameTextBox.Location = new System.Drawing.Point(116, 331);
+            this.ModProdNameTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.ModProdNameTextBox.Name = "ModProdNameTextBox";
+            this.ModProdNameTextBox.Size = new System.Drawing.Size(194, 31);
+            this.ModProdNameTextBox.TabIndex = 31;
             // 
             // MaxLabel
             // 
@@ -246,7 +198,7 @@
             // 
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F);
             this.button1.Location = new System.Drawing.Point(1300, 808);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(156, 60);
             this.button1.TabIndex = 48;
@@ -258,12 +210,13 @@
             // 
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F);
             this.button2.Location = new System.Drawing.Point(1122, 810);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(156, 60);
             this.button2.TabIndex = 47;
             this.button2.Text = "Save";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.ModProdSaveButton_Click);
             // 
             // DeleteButton
             // 
@@ -298,6 +251,7 @@
             this.AddButton.TabIndex = 44;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = true;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // SearchButton
             // 
@@ -350,16 +304,12 @@
             this.Controls.Add(this.SearchButton);
             this.Controls.Add(this.SearchField);
             this.Controls.Add(this.DataGridPart);
-            this.Controls.Add(this.IDTextBox);
-            this.Controls.Add(this.MaxTextBox);
-            this.Controls.Add(this.MachineIDTextBox);
-            this.Controls.Add(this.MinTextBox);
-            this.Controls.Add(this.PriceCostTextBox);
-            this.Controls.Add(this.InventoryTextBox);
-            this.Controls.Add(this.NameTextBox);
-            this.Controls.Add(this.MachCompLabel);
-            this.Controls.Add(this.ModProdOutsourcedRadioButton);
-            this.Controls.Add(this.ModProdInHouseRadioButton);
+            this.Controls.Add(this.ModProdIDTextBox);
+            this.Controls.Add(this.ModProdMaxTextBox);
+            this.Controls.Add(this.ModProdMinTextBox);
+            this.Controls.Add(this.ModProdPriceTextBox);
+            this.Controls.Add(this.ModProdStockTextBox);
+            this.Controls.Add(this.ModProdNameTextBox);
             this.Controls.Add(this.MaxLabel);
             this.Controls.Add(this.MinLabel);
             this.Controls.Add(this.PriceCostLabel);
@@ -367,12 +317,12 @@
             this.Controls.Add(this.NameLabel);
             this.Controls.Add(this.IDLabel);
             this.Controls.Add(this.ModifyProductLabel);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximumSize = new System.Drawing.Size(1530, 968);
             this.MinimumSize = new System.Drawing.Size(1530, 968);
             this.Name = "ModifyProductForm";
             this.Text = "Modify Product";
-            this.Load += new System.EventHandler(this.AddProductForm_Load);
+            this.Load += new System.EventHandler(this.ModProd_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DataGridAssociatedPart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataGridPart)).EndInit();
             this.ResumeLayout(false);
@@ -382,16 +332,12 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox IDTextBox;
-        private System.Windows.Forms.TextBox MaxTextBox;
-        private System.Windows.Forms.TextBox MachineIDTextBox;
-        private System.Windows.Forms.TextBox MinTextBox;
-        private System.Windows.Forms.TextBox PriceCostTextBox;
-        private System.Windows.Forms.TextBox InventoryTextBox;
-        private System.Windows.Forms.TextBox NameTextBox;
-        private System.Windows.Forms.Label MachCompLabel;
-        private System.Windows.Forms.RadioButton ModProdOutsourcedRadioButton;
-        private System.Windows.Forms.RadioButton ModProdInHouseRadioButton;
+        private System.Windows.Forms.TextBox ModProdIDTextBox;
+        private System.Windows.Forms.TextBox ModProdMaxTextBox;
+        private System.Windows.Forms.TextBox ModProdMinTextBox;
+        private System.Windows.Forms.TextBox ModProdPriceTextBox;
+        private System.Windows.Forms.TextBox ModProdStockTextBox;
+        private System.Windows.Forms.TextBox ModProdNameTextBox;
         private System.Windows.Forms.Label MaxLabel;
         private System.Windows.Forms.Label MinLabel;
         private System.Windows.Forms.Label PriceCostLabel;

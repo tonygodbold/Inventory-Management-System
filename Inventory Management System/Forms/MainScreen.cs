@@ -67,11 +67,12 @@ namespace Inventory_Management_System
         private void DataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             Inventory.CurrentIndex = e.RowIndex;
-            Inventory.CurrentObject = Inventory.AllParts[Inventory.CurrentIndex];
+            Inventory.CurrentPart = Inventory.AllParts[Inventory.CurrentIndex];
         }
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            Inventory.CurrentIndex = e.RowIndex;
+            Inventory.CurrentProduct = Inventory.Products[Inventory.CurrentIndex];
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -165,8 +166,16 @@ namespace Inventory_Management_System
 
         private void ModifyProduct_Click(object sender, EventArgs e)
         {
-            ModifyProductForm modifyProductForm = new ModifyProductForm();
-            modifyProductForm.Show();
+            if (!DataGridProduct.CurrentRow.Selected)
+            {
+                MessageBox.Show("No part is selected. Please select a part to modify.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+
+            else
+            {
+                ModifyProductForm modifyProductForm = new ModifyProductForm();
+                modifyProductForm.Show();
+            }
         }
 
         private void DeletePart_Click(object sender, EventArgs e)
