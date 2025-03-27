@@ -30,16 +30,16 @@
         {
             this.AddPartIDTextBox = new System.Windows.Forms.TextBox();
             this.AddPartMaxTextBox = new System.Windows.Forms.TextBox();
-            this.AddPartMachineIDCompanyNameTextBox = new System.Windows.Forms.TextBox();
+            this.AddPartMachCompTextBox = new System.Windows.Forms.TextBox();
             this.AddPartMinTextBox = new System.Windows.Forms.TextBox();
             this.AddPartPriceTextBox = new System.Windows.Forms.TextBox();
             this.AddPartInvTextBox = new System.Windows.Forms.TextBox();
             this.AddPartNameTextBox = new System.Windows.Forms.TextBox();
             this.CancelButton = new System.Windows.Forms.Button();
-            this.SaveButton = new System.Windows.Forms.Button();
+            this.AddPartSaveButton = new System.Windows.Forms.Button();
             this.MachineIDCompanyNameLabel = new System.Windows.Forms.Label();
-            this.OutsourcedRadioButton = new System.Windows.Forms.RadioButton();
-            this.InHouseRadioButton = new System.Windows.Forms.RadioButton();
+            this.AddPartOutSourcedRadioButton = new System.Windows.Forms.RadioButton();
+            this.AddPartInHouseRadioButton = new System.Windows.Forms.RadioButton();
             this.MaxLabel = new System.Windows.Forms.Label();
             this.MinLabel = new System.Windows.Forms.Label();
             this.PriceCostLabel = new System.Windows.Forms.Label();
@@ -68,15 +68,16 @@
             this.AddPartMaxTextBox.Name = "AddPartMaxTextBox";
             this.AddPartMaxTextBox.Size = new System.Drawing.Size(194, 31);
             this.AddPartMaxTextBox.TabIndex = 74;
+            this.AddPartMaxTextBox.TextChanged += new System.EventHandler(this.AddPartMaxTextBox_TextChanged);
             // 
-            // AddPartMachineIDCompanyNameTextBox
+            // AddPartMachCompTextBox
             // 
-            this.AddPartMachineIDCompanyNameTextBox.Location = new System.Drawing.Point(218, 531);
-            this.AddPartMachineIDCompanyNameTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.AddPartMachineIDCompanyNameTextBox.Name = "AddPartMachineIDCompanyNameTextBox";
-            this.AddPartMachineIDCompanyNameTextBox.Size = new System.Drawing.Size(194, 31);
-            this.AddPartMachineIDCompanyNameTextBox.TabIndex = 73;
-            this.AddPartMachineIDCompanyNameTextBox.TextChanged += new System.EventHandler(this.AddPartMachineIDTextBox_TextChanged);
+            this.AddPartMachCompTextBox.Location = new System.Drawing.Point(218, 531);
+            this.AddPartMachCompTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.AddPartMachCompTextBox.Name = "AddPartMachCompTextBox";
+            this.AddPartMachCompTextBox.Size = new System.Drawing.Size(194, 31);
+            this.AddPartMachCompTextBox.TabIndex = 73;
+            this.AddPartMachCompTextBox.TextChanged += new System.EventHandler(this.AddPartMachCompTextBox_TextChanged);
             // 
             // AddPartMinTextBox
             // 
@@ -85,6 +86,7 @@
             this.AddPartMinTextBox.Name = "AddPartMinTextBox";
             this.AddPartMinTextBox.Size = new System.Drawing.Size(194, 31);
             this.AddPartMinTextBox.TabIndex = 72;
+            this.AddPartMinTextBox.TextChanged += new System.EventHandler(this.AddPartMinTextBox_TextChanged);
             // 
             // AddPartPriceTextBox
             // 
@@ -93,6 +95,7 @@
             this.AddPartPriceTextBox.Name = "AddPartPriceTextBox";
             this.AddPartPriceTextBox.Size = new System.Drawing.Size(194, 31);
             this.AddPartPriceTextBox.TabIndex = 71;
+            this.AddPartPriceTextBox.TextChanged += new System.EventHandler(this.AddPartPriceTextBox_TextChanged);
             // 
             // AddPartInvTextBox
             // 
@@ -101,6 +104,7 @@
             this.AddPartInvTextBox.Name = "AddPartInvTextBox";
             this.AddPartInvTextBox.Size = new System.Drawing.Size(194, 31);
             this.AddPartInvTextBox.TabIndex = 70;
+            this.AddPartInvTextBox.TextChanged += new System.EventHandler(this.AddPartInvTextBox_TextChanged);
             // 
             // AddPartNameTextBox
             // 
@@ -109,6 +113,7 @@
             this.AddPartNameTextBox.Name = "AddPartNameTextBox";
             this.AddPartNameTextBox.Size = new System.Drawing.Size(194, 31);
             this.AddPartNameTextBox.TabIndex = 69;
+            this.AddPartNameTextBox.TextChanged += new System.EventHandler(this.AddPartNameTextBox_TextChanged);
             // 
             // CancelButton
             // 
@@ -122,17 +127,17 @@
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
-            // SaveButton
+            // AddPartSaveButton
             // 
-            this.SaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F);
-            this.SaveButton.Location = new System.Drawing.Point(80, 606);
-            this.SaveButton.Margin = new System.Windows.Forms.Padding(4);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(178, 65);
-            this.SaveButton.TabIndex = 67;
-            this.SaveButton.Text = "Save";
-            this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            this.AddPartSaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F);
+            this.AddPartSaveButton.Location = new System.Drawing.Point(80, 606);
+            this.AddPartSaveButton.Margin = new System.Windows.Forms.Padding(4);
+            this.AddPartSaveButton.Name = "AddPartSaveButton";
+            this.AddPartSaveButton.Size = new System.Drawing.Size(178, 65);
+            this.AddPartSaveButton.TabIndex = 67;
+            this.AddPartSaveButton.Text = "Save";
+            this.AddPartSaveButton.UseVisualStyleBackColor = true;
+            this.AddPartSaveButton.Click += new System.EventHandler(this.AddPartSaveButton_Click);
             // 
             // MachineIDCompanyNameLabel
             // 
@@ -145,31 +150,31 @@
             this.MachineIDCompanyNameLabel.Text = "Machine ID";
             this.MachineIDCompanyNameLabel.Click += new System.EventHandler(this.MachineIDCompanyNameLabel_Click);
             // 
-            // OutsourcedRadioButton
+            // AddPartOutSourcedRadioButton
             // 
-            this.OutsourcedRadioButton.AutoSize = true;
-            this.OutsourcedRadioButton.Location = new System.Drawing.Point(358, 135);
-            this.OutsourcedRadioButton.Margin = new System.Windows.Forms.Padding(4);
-            this.OutsourcedRadioButton.Name = "OutsourcedRadioButton";
-            this.OutsourcedRadioButton.Size = new System.Drawing.Size(154, 29);
-            this.OutsourcedRadioButton.TabIndex = 65;
-            this.OutsourcedRadioButton.Text = "Outsourced";
-            this.OutsourcedRadioButton.UseVisualStyleBackColor = true;
-            this.OutsourcedRadioButton.CheckedChanged += new System.EventHandler(this.OutsourcedRadioButton_CheckedChanged);
+            this.AddPartOutSourcedRadioButton.AutoSize = true;
+            this.AddPartOutSourcedRadioButton.Location = new System.Drawing.Point(358, 135);
+            this.AddPartOutSourcedRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.AddPartOutSourcedRadioButton.Name = "AddPartOutSourcedRadioButton";
+            this.AddPartOutSourcedRadioButton.Size = new System.Drawing.Size(154, 29);
+            this.AddPartOutSourcedRadioButton.TabIndex = 65;
+            this.AddPartOutSourcedRadioButton.Text = "Outsourced";
+            this.AddPartOutSourcedRadioButton.UseVisualStyleBackColor = true;
+            this.AddPartOutSourcedRadioButton.CheckedChanged += new System.EventHandler(this.OutsourcedRadioButton_CheckedChanged);
             // 
-            // InHouseRadioButton
+            // AddPartInHouseRadioButton
             // 
-            this.InHouseRadioButton.AutoSize = true;
-            this.InHouseRadioButton.Checked = true;
-            this.InHouseRadioButton.Location = new System.Drawing.Point(82, 135);
-            this.InHouseRadioButton.Margin = new System.Windows.Forms.Padding(4);
-            this.InHouseRadioButton.Name = "InHouseRadioButton";
-            this.InHouseRadioButton.Size = new System.Drawing.Size(129, 29);
-            this.InHouseRadioButton.TabIndex = 64;
-            this.InHouseRadioButton.TabStop = true;
-            this.InHouseRadioButton.Text = "In-House";
-            this.InHouseRadioButton.UseVisualStyleBackColor = true;
-            this.InHouseRadioButton.CheckedChanged += new System.EventHandler(this.InHouseRadioButton_CheckedChanged);
+            this.AddPartInHouseRadioButton.AutoSize = true;
+            this.AddPartInHouseRadioButton.Checked = true;
+            this.AddPartInHouseRadioButton.Location = new System.Drawing.Point(82, 135);
+            this.AddPartInHouseRadioButton.Margin = new System.Windows.Forms.Padding(4);
+            this.AddPartInHouseRadioButton.Name = "AddPartInHouseRadioButton";
+            this.AddPartInHouseRadioButton.Size = new System.Drawing.Size(129, 29);
+            this.AddPartInHouseRadioButton.TabIndex = 64;
+            this.AddPartInHouseRadioButton.TabStop = true;
+            this.AddPartInHouseRadioButton.Text = "In-House";
+            this.AddPartInHouseRadioButton.UseVisualStyleBackColor = true;
+            this.AddPartInHouseRadioButton.CheckedChanged += new System.EventHandler(this.InHouseRadioButton_CheckedChanged);
             // 
             // MaxLabel
             // 
@@ -249,16 +254,16 @@
             this.ClientSize = new System.Drawing.Size(594, 701);
             this.Controls.Add(this.AddPartIDTextBox);
             this.Controls.Add(this.AddPartMaxTextBox);
-            this.Controls.Add(this.AddPartMachineIDCompanyNameTextBox);
+            this.Controls.Add(this.AddPartMachCompTextBox);
             this.Controls.Add(this.AddPartMinTextBox);
             this.Controls.Add(this.AddPartPriceTextBox);
             this.Controls.Add(this.AddPartInvTextBox);
             this.Controls.Add(this.AddPartNameTextBox);
             this.Controls.Add(this.CancelButton);
-            this.Controls.Add(this.SaveButton);
+            this.Controls.Add(this.AddPartSaveButton);
             this.Controls.Add(this.MachineIDCompanyNameLabel);
-            this.Controls.Add(this.OutsourcedRadioButton);
-            this.Controls.Add(this.InHouseRadioButton);
+            this.Controls.Add(this.AddPartOutSourcedRadioButton);
+            this.Controls.Add(this.AddPartInHouseRadioButton);
             this.Controls.Add(this.MaxLabel);
             this.Controls.Add(this.MinLabel);
             this.Controls.Add(this.PriceCostLabel);
@@ -281,16 +286,16 @@
 
         private System.Windows.Forms.TextBox AddPartIDTextBox;
         private System.Windows.Forms.TextBox AddPartMaxTextBox;
-        private System.Windows.Forms.TextBox AddPartMachineIDCompanyNameTextBox;
+        private System.Windows.Forms.TextBox AddPartMachCompTextBox;
         private System.Windows.Forms.TextBox AddPartMinTextBox;
         private System.Windows.Forms.TextBox AddPartPriceTextBox;
         private System.Windows.Forms.TextBox AddPartInvTextBox;
         private System.Windows.Forms.TextBox AddPartNameTextBox;
         private new System.Windows.Forms.Button CancelButton;
-        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Button AddPartSaveButton;
         private System.Windows.Forms.Label MachineIDCompanyNameLabel;
-        private System.Windows.Forms.RadioButton OutsourcedRadioButton;
-        private System.Windows.Forms.RadioButton InHouseRadioButton;
+        private System.Windows.Forms.RadioButton AddPartOutSourcedRadioButton;
+        private System.Windows.Forms.RadioButton AddPartInHouseRadioButton;
         private System.Windows.Forms.Label MaxLabel;
         private System.Windows.Forms.Label MinLabel;
         private System.Windows.Forms.Label PriceCostLabel;
