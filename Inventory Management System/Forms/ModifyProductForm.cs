@@ -218,5 +218,122 @@ namespace Inventory_Management_System
                 DataGridPart.DataSource = Inventory.AllParts;
             }
         }
+        public void CheckIfNum(string checkData)
+        {
+            var isNum = int.TryParse(checkData, out int n);
+            if (isNum == false)
+            {
+                throw new Exception();
+            }
+        }
+        private void CheckIfDeci(string checkDeci)
+        {
+            decimal deciNum;
+            var isDecimal = decimal.TryParse(checkDeci, out deciNum);
+            if (isDecimal == false)
+            {
+                throw new Exception();
+            }
+        }
+
+        private void ModProdNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ModProdNameTextBox.Text))
+            {
+                ModProdNameTextBox.BackColor = Color.Salmon;
+                ModProdSaveButton.Enabled = false;
+            }
+            else
+            {
+                ModProdNameTextBox.BackColor = Color.White;
+                ModProdSaveButton.Enabled = true;
+            }
+        }
+
+        private void ModProdStockTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckIfNum(ModProdStockTextBox.Text);
+                ModProdStockTextBox.BackColor = Color.White;
+                ModProdSaveButton.Enabled = true;
+            }
+            catch (Exception)
+            {
+                ModProdStockTextBox.BackColor = Color.Salmon;
+                ToolTip toolTipNum = new ToolTip();
+                toolTipNum.SetToolTip(ModProdStockTextBox, "Number Values only.");
+                ModProdSaveButton.Enabled = false;
+            }
+        }
+
+        private void ModProdPriceTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckIfDeci(ModProdPriceTextBox.Text);
+                ModProdPriceTextBox.BackColor = Color.White;
+                ModProdPriceTextBox.Enabled = true;
+            }
+            catch (Exception)
+            {
+                ModProdPriceTextBox.BackColor = Color.Salmon;
+                ToolTip toolTipDeci = new ToolTip();
+                toolTipDeci.SetToolTip(ModProdPriceTextBox, "Numeric or decimal values only.");
+            }
+        }
+
+        private void EnableModSaveButton()
+        {
+            if ((ModProdNameTextBox.BackColor == Color.White) && (ModProdStockTextBox.BackColor == Color.White) && (ModProdPriceTextBox.BackColor == Color.White) && (ModProdMaxTextBox.BackColor == Color.White) && (ModProdMinTextBox.BackColor == Color.White))
+            {
+                ModProdSaveButton.Enabled = true;
+            }
+        }
+        private void ModProdIDTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ModProdIDTextBox.Text))
+            {
+                ModProdIDTextBox.BackColor = Color.Salmon;
+                ModProdSaveButton.Enabled = false;
+            }
+            else
+            {
+                ModProdIDTextBox.BackColor = Color.White;
+                ModProdSaveButton.Enabled = true;
+            }
+        }
+        private void ModProdMaxTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckIfNum(ModProdMaxTextBox.Text);
+                ModProdMaxTextBox.BackColor = Color.White;
+                EnableModSaveButton();
+            }
+            catch (Exception)
+            {
+                ModProdMaxTextBox.BackColor = Color.Salmon;
+                ToolTip toolTipNum = new ToolTip();
+                toolTipNum.SetToolTip(ModProdMaxTextBox, "Numeric values only.");
+                ModProdSaveButton.Enabled = false;
+            }
+        }
+
+        private void ModProdMinTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckIfNum(ModProdMinTextBox.Text);
+                ModProdMinTextBox.BackColor = Color.White;
+                EnableModSaveButton();
+            }
+            catch (Exception)
+            {
+                ModProdMinTextBox.BackColor = Color.Salmon;
+                ToolTip toolTipNum = new ToolTip();
+                toolTipNum.SetToolTip(ModProdMinTextBox, "Numeric values only.");
+            }
+        }
     }
 }

@@ -44,7 +44,7 @@
             this.PartsAssociatedWithThisProductLabel = new System.Windows.Forms.Label();
             this.AllCandidatePartsLabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.ModProdSaveButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.DataGridAssociatedPart = new System.Windows.Forms.DataGridView();
             this.AddButton = new System.Windows.Forms.Button();
@@ -62,6 +62,7 @@
             this.ModProdIDTextBox.Name = "ModProdIDTextBox";
             this.ModProdIDTextBox.Size = new System.Drawing.Size(194, 31);
             this.ModProdIDTextBox.TabIndex = 37;
+            this.ModProdIDTextBox.TextChanged += new System.EventHandler(this.ModProdIDTextBox_TextChanged);
             // 
             // ModProdMaxTextBox
             // 
@@ -70,6 +71,7 @@
             this.ModProdMaxTextBox.Name = "ModProdMaxTextBox";
             this.ModProdMaxTextBox.Size = new System.Drawing.Size(194, 31);
             this.ModProdMaxTextBox.TabIndex = 36;
+            this.ModProdMaxTextBox.TextChanged += new System.EventHandler(this.ModProdMaxTextBox_TextChanged);
             // 
             // ModProdMinTextBox
             // 
@@ -78,6 +80,7 @@
             this.ModProdMinTextBox.Name = "ModProdMinTextBox";
             this.ModProdMinTextBox.Size = new System.Drawing.Size(194, 31);
             this.ModProdMinTextBox.TabIndex = 34;
+            this.ModProdMinTextBox.TextChanged += new System.EventHandler(this.ModProdMinTextBox_TextChanged);
             // 
             // ModProdPriceTextBox
             // 
@@ -86,6 +89,7 @@
             this.ModProdPriceTextBox.Name = "ModProdPriceTextBox";
             this.ModProdPriceTextBox.Size = new System.Drawing.Size(194, 31);
             this.ModProdPriceTextBox.TabIndex = 33;
+            this.ModProdPriceTextBox.TextChanged += new System.EventHandler(this.ModProdPriceTextBox_TextChanged);
             // 
             // ModProdStockTextBox
             // 
@@ -94,6 +98,7 @@
             this.ModProdStockTextBox.Name = "ModProdStockTextBox";
             this.ModProdStockTextBox.Size = new System.Drawing.Size(194, 31);
             this.ModProdStockTextBox.TabIndex = 32;
+            this.ModProdStockTextBox.TextChanged += new System.EventHandler(this.ModProdStockTextBox_TextChanged);
             // 
             // ModProdNameTextBox
             // 
@@ -102,6 +107,7 @@
             this.ModProdNameTextBox.Name = "ModProdNameTextBox";
             this.ModProdNameTextBox.Size = new System.Drawing.Size(194, 31);
             this.ModProdNameTextBox.TabIndex = 31;
+            this.ModProdNameTextBox.TextChanged += new System.EventHandler(this.ModProdNameTextBox_TextChanged);
             // 
             // MaxLabel
             // 
@@ -206,17 +212,17 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // ModProdSaveButton
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F);
-            this.button2.Location = new System.Drawing.Point(1122, 810);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(156, 60);
-            this.button2.TabIndex = 47;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.ModProdSaveButton_Click);
+            this.ModProdSaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F);
+            this.ModProdSaveButton.Location = new System.Drawing.Point(1122, 810);
+            this.ModProdSaveButton.Margin = new System.Windows.Forms.Padding(4);
+            this.ModProdSaveButton.Name = "ModProdSaveButton";
+            this.ModProdSaveButton.Size = new System.Drawing.Size(156, 60);
+            this.ModProdSaveButton.TabIndex = 47;
+            this.ModProdSaveButton.Text = "Save";
+            this.ModProdSaveButton.UseVisualStyleBackColor = true;
+            this.ModProdSaveButton.Click += new System.EventHandler(this.ModProdSaveButton_Click);
             // 
             // DeleteButton
             // 
@@ -299,7 +305,7 @@
             this.Controls.Add(this.PartsAssociatedWithThisProductLabel);
             this.Controls.Add(this.AllCandidatePartsLabel);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.ModProdSaveButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.DataGridAssociatedPart);
             this.Controls.Add(this.AddButton);
@@ -350,7 +356,7 @@
         private System.Windows.Forms.Label PartsAssociatedWithThisProductLabel;
         private System.Windows.Forms.Label AllCandidatePartsLabel;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button ModProdSaveButton;
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.DataGridView DataGridAssociatedPart;
         private System.Windows.Forms.Button AddButton;
