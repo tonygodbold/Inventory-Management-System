@@ -13,18 +13,20 @@ namespace Inventory_Management_System
 {
     public partial class ModifyProductForm : Form
     {
-        Product product1 = new Product();
+        Product product2 = new Product();
 
         public ModifyProductForm()
         {
             InitializeComponent();
             formatDGV(DataGridPart);
+            formatDGV(DataGridAssociatedPart);
             display();
         }
 
         private void display() // re-populate the DGV using the current MyList 
         {
             DataGridPart.DataSource = Inventory.AllParts;
+            DataGridAssociatedPart.DataSource = product2.AssociatedParts;
         }
         private void formatDGV(DataGridView d)
         {
@@ -67,10 +69,10 @@ namespace Inventory_Management_System
             this.Close();
         }
 
-        private void addAssociatedPart(Part part)
-        {
-            AssociatedParts.Add(part);
-        }
+        //public void addAssociatedPart(Part part)
+        //{
+        //    Product.CurrentIndexAssociatedPart.Add(part);
+        //}
 
         private void AddButton_Click(object sender, EventArgs e)
         {
@@ -83,7 +85,7 @@ namespace Inventory_Management_System
             {
                 Part part = (Part)DataGridPart.CurrentRow.DataBoundItem; //Grabs current row | Casts DataBoundItem into a type Part
 
-                product1.addAssociatedPart(part);
+                product2.addAssociatedPart(part);
             }
         }
 
@@ -108,7 +110,7 @@ namespace Inventory_Management_System
                 MessageBox.Show("Inventory cannot be greater than Max or less than Min.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-            public void ModProdSaveButton_Click(object sender, EventArgs e)
+        public void ModProdSaveButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -122,12 +124,21 @@ namespace Inventory_Management_System
 
                 if (productToUpdate != null)
                 {
+                    if (DataGridAssociatedPart == null)
+                    {
+                        MessageBox.Show("Associated part not found. Add a part.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
                     // Update the existing part
                     productToUpdate.Name = ModProdNameTextBox.Text;
                     productToUpdate.Price = Decimal.Parse(ModProdPriceTextBox.Text);
                     productToUpdate.InStock = Int32.Parse(ModProdStockTextBox.Text);
                     productToUpdate.Min = Int32.Parse(ModProdMinTextBox.Text);
                     productToUpdate.Max = Int32.Parse(ModProdMaxTextBox.Text);
+                    
+                    //Need to save the Associated Parts
+
                 }
 
                 else
@@ -156,10 +167,28 @@ namespace Inventory_Management_System
                 ModProdPriceTextBox.Text = Inventory.CurrentProduct.Price.ToString();
                 ModProdMinTextBox.Text = Inventory.CurrentProduct.Min.ToString();
                 ModProdMaxTextBox.Text = Inventory.CurrentProduct.Max.ToString();
+
+                //DataGridAssociatedPart.DataSource = Inventory.CurrentProduct.AssociatedParts;
             }
+        
             else
             {
                 ModProdIDTextBox.Text = string.Empty; // Fallback for null
+            }
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (!DataGridAssociatedPart.CurrentRow.Selected)
+            {
+                MessageBox.Show("No associated part selected. Please select a part.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            else
+            {
+                Part selectedPart = DataGridAssociatedPart.CurrentRow.DataBoundItem as Part;
+
+                product2.removeAssociatedPart(selectedPart.PartID);
             }
         }
     }

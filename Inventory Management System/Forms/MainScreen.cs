@@ -71,8 +71,8 @@ namespace Inventory_Management_System
         }
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            Inventory.CurrentIndex = e.RowIndex;
-            Inventory.CurrentProduct = Inventory.Products[Inventory.CurrentIndex];
+            //Inventory.CurrentIndex = e.RowIndex;
+            //Inventory.CurrentProduct = Inventory.Products[Inventory.CurrentIndex];
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -168,7 +168,7 @@ namespace Inventory_Management_System
         {
             if (!DataGridProduct.CurrentRow.Selected)
             {
-                MessageBox.Show("No part is selected. Please select a part to modify.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("No product is selected. Please select a product to modify.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             else
@@ -276,6 +276,12 @@ namespace Inventory_Management_System
                 MessageBox.Show("Nothing found.");
                 DataGridProduct.DataSource = Inventory.Products;
             }
+        }
+
+        private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            Inventory.CurrentIndex = e.RowIndex;
+            Inventory.CurrentProduct = Inventory.Products[Inventory.CurrentIndex];
         }
     }
 }

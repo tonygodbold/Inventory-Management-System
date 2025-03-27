@@ -77,6 +77,7 @@ namespace Inventory_Management_System
             this.DataGridProduct.RowTemplate.Height = 33;
             this.DataGridProduct.Size = new System.Drawing.Size(896, 769);
             this.DataGridProduct.TabIndex = 1;
+            this.DataGridProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellClick);
             this.DataGridProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             this.DataGridProduct.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.myBindingCompleteProduct);
             // 

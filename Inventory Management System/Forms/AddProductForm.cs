@@ -164,5 +164,18 @@ namespace Inventory_Management_System
         //        DataGridAssociatedPart.DataSource = Inventory.AllParts[Product.CurrentIndexPart].AssociatedParts;
         //    }
         }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+            if (!DataGridAssociatedPart.CurrentRow.Selected)
+            {
+                MessageBox.Show("No associated part selected. Please select a part.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                Part selectedPart = DataGridAssociatedPart.CurrentRow.DataBoundItem as Part;
+                product1.removeAssociatedPart(selectedPart.PartID);
+            }
+        }
     }
 }
