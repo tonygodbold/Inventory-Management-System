@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -88,6 +89,19 @@ namespace Inventory_Management_System
                 ModPartSaveButton.Enabled = true;
             }
         }
+        private void ModIDTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ModIDTextBox.Text))
+            {
+                ModIDTextBox.BackColor = Color.Salmon;
+                ModPartSaveButton.Enabled = false;
+            }
+            else
+            {
+                ModIDTextBox.BackColor = Color.White;
+                ModPartSaveButton.Enabled = true;
+            }
+        }
 
         private void ModInvTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -156,23 +170,29 @@ namespace Inventory_Management_System
             }
         }
 
-        //private void ModMachCompTextBox_TextChanged(object sender, EventArgs e)
-        //{
-        //    if (ModInHouseRadioButton.Checked)
-        //    {
-        //        if (string.IsNullOrWhiteSpace(ModMachCompTextBox.Text) || !(int.TryParse(ModMachCompTextBox.Text, out int x)))
-        //        {
-        //            ModPartSaveButton.Enabled = false;
-        //        }
-        //    }
-        //    if (ModOutSourcedRadioButton.Checked)
-        //    {
-        //        if (string.IsNullOrWhiteSpace(ModMachCompTextBox.Text))
-        //        {
-        //            ModPartSaveButton.Enabled = false;
-        //        }
-        //    }
-        //}
+        private void ModMachCompTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ModMachCompTextBox.Text))
+            {
+                ModMachCompTextBox.BackColor = Color.Salmon;
+                ToolTip toolTipNum = new ToolTip();
+                ModPartSaveButton.Enabled = false;
+
+                if (ModInHouseRadioButton.Checked)
+                {
+                    toolTipNum.SetToolTip(ModMachCompTextBox, "Numeric values only.");
+                }
+                else if (ModOutSourcedRadioButton.Checked)
+                {
+                    toolTipNum.SetToolTip(ModMachCompTextBox, "Company name only.");
+                }
+            }
+            else
+            {
+                ModMachCompTextBox.BackColor = Color.White;
+                ModPartSaveButton.Enabled = true;
+            }
+        }
 
         private static void CompareMinMax(int min, int max)
         {
@@ -216,12 +236,12 @@ namespace Inventory_Management_System
 
                 if (partToUpdate != null)
                 {
-                    // Update the existing part
-                    partToUpdate.Name = ModPartNameTextBox.Text;
-                    partToUpdate.Price = Decimal.Parse(ModPriceTextBox.Text);
-                    partToUpdate.InStock = Int32.Parse(ModInvTextBox.Text);
-                    partToUpdate.Min = Int32.Parse(ModMinTextBox.Text);
-                    partToUpdate.Max = Int32.Parse(ModMaxTextBox.Text);
+                        // Update the existing part
+                        partToUpdate.Name = ModPartNameTextBox.Text;
+                        partToUpdate.Price = Decimal.Parse(ModPriceTextBox.Text);
+                        partToUpdate.InStock = Int32.Parse(ModInvTextBox.Text);
+                        partToUpdate.Min = Int32.Parse(ModMinTextBox.Text);
+                        partToUpdate.Max = Int32.Parse(ModMaxTextBox.Text);
 
                     if (ModInHouseRadioButton.Checked && partToUpdate is InHouse inHousePart)
                     {

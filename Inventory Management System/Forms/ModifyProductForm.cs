@@ -94,7 +94,7 @@ namespace Inventory_Management_System
         {
 
         }
-            
+
 
         private static void CompareMinMax(int min, int max)
         {
@@ -139,7 +139,7 @@ namespace Inventory_Management_System
                     productToUpdate.Max = Int32.Parse(ModProdMaxTextBox.Text);
 
                     //Need to save the Associated Parts
-                    productToUpdate.AssociatedParts = product2.AssociatedParts;
+                    //productToUpdate.AssociatedParts = product2.AssociatedParts;
                 }
 
                 else
@@ -150,8 +150,6 @@ namespace Inventory_Management_System
                 }
 
                 product3.updateProduct(productToUpdate.ProductID, productToUpdate);
-
-                //Inventory.Products.updatePart(productToUpdate);
 
                 this.Close();
 
@@ -175,7 +173,7 @@ namespace Inventory_Management_System
 
 
             }
-        
+
             else
             {
                 ModProdIDTextBox.Text = string.Empty; // Fallback for null
@@ -194,6 +192,30 @@ namespace Inventory_Management_System
                 Part selectedPart = DataGridAssociatedPart.CurrentRow.DataBoundItem as Part;
 
                 product2.removeAssociatedPart(selectedPart.PartID);
+            }
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            BindingList<Part> TempList = new BindingList<Part>();
+            bool found = false;
+            if (SearchField.Text != "")
+            {
+                for (int i = 0; i < Inventory.AllParts.Count; i++)
+                {
+                    if (Inventory.AllParts[i].Name.ToUpper().Contains(SearchField.Text.ToUpper()))
+                    {
+                        TempList.Add(Inventory.AllParts[i]);
+                        found = true;
+                    }
+                }
+                if (found)
+                    DataGridPart.DataSource = TempList;
+            }
+            if (!found)
+            {
+                //MessageBox.Show("Nothing found.");
+                DataGridPart.DataSource = Inventory.AllParts;
             }
         }
     }

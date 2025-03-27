@@ -56,6 +56,7 @@
             this.ModIDTextBox.Name = "ModIDTextBox";
             this.ModIDTextBox.Size = new System.Drawing.Size(194, 31);
             this.ModIDTextBox.TabIndex = 56;
+            this.ModIDTextBox.TextChanged += new System.EventHandler(this.ModIDTextBox_TextChanged);
             // 
             // ModMaxTextBox
             // 
@@ -64,6 +65,7 @@
             this.ModMaxTextBox.Name = "ModMaxTextBox";
             this.ModMaxTextBox.Size = new System.Drawing.Size(194, 31);
             this.ModMaxTextBox.TabIndex = 55;
+            this.ModMaxTextBox.TextChanged += new System.EventHandler(this.ModMaxTextBox_TextChanged);
             // 
             // ModMachCompTextBox
             // 
@@ -72,6 +74,7 @@
             this.ModMachCompTextBox.Name = "ModMachCompTextBox";
             this.ModMachCompTextBox.Size = new System.Drawing.Size(194, 31);
             this.ModMachCompTextBox.TabIndex = 54;
+            this.ModMachCompTextBox.TextChanged += new System.EventHandler(this.ModMachCompTextBox_TextChanged);
             // 
             // ModMinTextBox
             // 
@@ -80,6 +83,7 @@
             this.ModMinTextBox.Name = "ModMinTextBox";
             this.ModMinTextBox.Size = new System.Drawing.Size(194, 31);
             this.ModMinTextBox.TabIndex = 53;
+            this.ModMinTextBox.TextChanged += new System.EventHandler(this.ModMinTextBox_TextChanged);
             // 
             // ModPriceTextBox
             // 
@@ -88,6 +92,7 @@
             this.ModPriceTextBox.Name = "ModPriceTextBox";
             this.ModPriceTextBox.Size = new System.Drawing.Size(194, 31);
             this.ModPriceTextBox.TabIndex = 52;
+            this.ModPriceTextBox.TextChanged += new System.EventHandler(this.ModPriceTextBox_TextChanged);
             // 
             // ModInvTextBox
             // 
@@ -96,6 +101,7 @@
             this.ModInvTextBox.Name = "ModInvTextBox";
             this.ModInvTextBox.Size = new System.Drawing.Size(194, 31);
             this.ModInvTextBox.TabIndex = 51;
+            this.ModInvTextBox.TextChanged += new System.EventHandler(this.ModInvTextBox_TextChanged);
             // 
             // ModPartNameTextBox
             // 
@@ -104,6 +110,7 @@
             this.ModPartNameTextBox.Name = "ModPartNameTextBox";
             this.ModPartNameTextBox.Size = new System.Drawing.Size(194, 31);
             this.ModPartNameTextBox.TabIndex = 50;
+            this.ModPartNameTextBox.TextChanged += new System.EventHandler(this.ModPartNameTextBox_TextChanged);
             // 
             // CancelButton
             // 
