@@ -16,7 +16,10 @@ namespace Inventory_Management_System
         public AddPartForm()
         {
             InitializeComponent();
+            //TextLoad();
         }
+
+        //private void TextLoad()
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
@@ -210,7 +213,11 @@ namespace Inventory_Management_System
         {
             if ((AddPartNameTextBox.BackColor == Color.White) && (AddPartInvTextBox.BackColor == Color.White) && (AddPartPriceTextBox.BackColor == Color.White) && (AddPartMaxTextBox.BackColor == Color.White) && (AddPartMinTextBox.BackColor == Color.White) && (AddPartMachCompTextBox.BackColor == Color.White))
             {
-                EnableAddPartSaveButton();
+                AddPartSaveButton.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("All values must contain a value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

@@ -63,6 +63,7 @@
             // 
             // AddPartMaxTextBox
             // 
+            this.AddPartMaxTextBox.BackColor = System.Drawing.Color.Salmon;
             this.AddPartMaxTextBox.Location = new System.Drawing.Point(376, 460);
             this.AddPartMaxTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.AddPartMaxTextBox.Name = "AddPartMaxTextBox";
@@ -72,6 +73,7 @@
             // 
             // AddPartMachCompTextBox
             // 
+            this.AddPartMachCompTextBox.BackColor = System.Drawing.Color.Salmon;
             this.AddPartMachCompTextBox.Location = new System.Drawing.Point(218, 531);
             this.AddPartMachCompTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.AddPartMachCompTextBox.Name = "AddPartMachCompTextBox";
@@ -81,6 +83,7 @@
             // 
             // AddPartMinTextBox
             // 
+            this.AddPartMinTextBox.BackColor = System.Drawing.Color.Salmon;
             this.AddPartMinTextBox.Location = new System.Drawing.Point(100, 462);
             this.AddPartMinTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.AddPartMinTextBox.Name = "AddPartMinTextBox";
@@ -90,6 +93,7 @@
             // 
             // AddPartPriceTextBox
             // 
+            this.AddPartPriceTextBox.BackColor = System.Drawing.Color.Salmon;
             this.AddPartPriceTextBox.Location = new System.Drawing.Point(176, 400);
             this.AddPartPriceTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.AddPartPriceTextBox.Name = "AddPartPriceTextBox";
@@ -99,6 +103,7 @@
             // 
             // AddPartInvTextBox
             // 
+            this.AddPartInvTextBox.BackColor = System.Drawing.Color.Salmon;
             this.AddPartInvTextBox.Location = new System.Drawing.Point(150, 340);
             this.AddPartInvTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.AddPartInvTextBox.Name = "AddPartInvTextBox";
@@ -108,6 +113,7 @@
             // 
             // AddPartNameTextBox
             // 
+            this.AddPartNameTextBox.BackColor = System.Drawing.Color.Salmon;
             this.AddPartNameTextBox.Location = new System.Drawing.Point(118, 279);
             this.AddPartNameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.AddPartNameTextBox.Name = "AddPartNameTextBox";
