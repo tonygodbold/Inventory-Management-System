@@ -14,6 +14,7 @@ namespace Inventory_Management_System
     public partial class ModifyProductForm : Form
     {
         Product product2 = new Product();
+        Inventory product3 = new Inventory();
 
         public ModifyProductForm()
         {
@@ -136,9 +137,9 @@ namespace Inventory_Management_System
                     productToUpdate.InStock = Int32.Parse(ModProdStockTextBox.Text);
                     productToUpdate.Min = Int32.Parse(ModProdMinTextBox.Text);
                     productToUpdate.Max = Int32.Parse(ModProdMaxTextBox.Text);
-                    
-                    //Need to save the Associated Parts
 
+                    //Need to save the Associated Parts
+                    productToUpdate.AssociatedParts = product2.AssociatedParts;
                 }
 
                 else
@@ -147,6 +148,10 @@ namespace Inventory_Management_System
                     MessageBox.Show("Product not found in the inventory.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+                product3.updateProduct(productToUpdate.ProductID, productToUpdate);
+
+                //Inventory.Products.updatePart(productToUpdate);
 
                 this.Close();
 
@@ -157,7 +162,7 @@ namespace Inventory_Management_System
             }
         }
 
-        private void ModProd_Load(object sender, EventArgs e)
+        void ModProd_Load(object sender, EventArgs e)
         {
             if (Inventory.CurrentProduct != null)
             {
@@ -168,7 +173,7 @@ namespace Inventory_Management_System
                 ModProdMinTextBox.Text = Inventory.CurrentProduct.Min.ToString();
                 ModProdMaxTextBox.Text = Inventory.CurrentProduct.Max.ToString();
 
-                //DataGridAssociatedPart.DataSource = Inventory.CurrentProduct.AssociatedParts;
+
             }
         
             else

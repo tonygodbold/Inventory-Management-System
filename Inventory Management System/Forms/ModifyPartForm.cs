@@ -16,6 +16,9 @@ namespace Inventory_Management_System
     {
         MainScreen mainScreen = (MainScreen)Application.OpenForms["MainScreen"];
 
+        Inventory part3 = new Inventory();
+
+
         public ModifyPartForm()
         {
             InitializeComponent();
@@ -241,9 +244,8 @@ namespace Inventory_Management_System
                     return;
                 }
 
-                // Reload the DataGridView to reflect changes
-                //ReloadDataGridView(DataGridView q);
-                //ReloadDataGridView(MainScreen.DataGridPart);
+                part3.updatePart(partToUpdate.PartID, partToUpdate);
+
 
                 this.Close();
 
