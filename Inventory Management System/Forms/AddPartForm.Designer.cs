@@ -135,6 +135,7 @@
             // 
             // AddPartSaveButton
             // 
+            this.AddPartSaveButton.Enabled = false;
             this.AddPartSaveButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.875F);
             this.AddPartSaveButton.Location = new System.Drawing.Point(80, 606);
             this.AddPartSaveButton.Margin = new System.Windows.Forms.Padding(4);

@@ -17,7 +17,7 @@ namespace Inventory_Management_System
     {
         MainScreen mainScreen = (MainScreen)Application.OpenForms["MainScreen"];
 
-        //Inventory part3 = new Inventory();
+        Inventory part3 = new Inventory();
 
 
         public ModifyPartForm()
@@ -259,11 +259,16 @@ namespace Inventory_Management_System
                     }
                 }
 
-                Inventory inventoryInstance = new Inventory();
+                //Inventory inventoryInstance = new Inventory();
 
-                inventoryInstance.updatePart(partToUpdate.PartID, partToUpdate);
+                //inventoryInstance.updatePart(partToUpdate.PartID, partToUpdate);
+
+                part3.updatePart(partToUpdate.PartID, partToUpdate);
 
                 this.Close();
+
+                MainScreen mainScreen = new MainScreen();
+                mainScreen.Refresh();
 
                 // Open Main Screen?
 

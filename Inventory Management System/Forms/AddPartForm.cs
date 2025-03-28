@@ -221,6 +221,41 @@ namespace Inventory_Management_System
                 //MessageBox.Show("All values must contain a value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+        private void CheckMachCompValue()
+        {
+            try
+            {
+                // If InHouseButton is checked
+                if (AddPartInHouseRadioButton.Checked)
+                {
+                    // Validate if AddPartMachCompTextBox.Text is an integer
+                    if (!int.TryParse(AddPartMachCompTextBox.Text, out _))
+                    {
+                        throw new Exception("Machine ID must be an number value.");
+                    }
+                }
+                // If OutSourcedButton is checked
+                else if (AddPartOutSourcedRadioButton.Checked)
+                {
+                    // Validate if AddPartMachCompTextBox.Text is a non-numeric string
+                    if (int.TryParse(AddPartMachCompTextBox.Text, out _))
+                    {
+                        throw new Exception("Company Name must be a word.");
+                    }
+                }
+                else
+                {
+                    // Enable Save button if validation passes
+                    EnableAddPartSaveButton();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Display the error message
+                MessageBox.Show(ex.Message);
+                return;
+            }
+        }
 
         private void AddPartSaveButton_Click(object sender, EventArgs e)
         {
@@ -228,6 +263,7 @@ namespace Inventory_Management_System
             {
                 CompareMinMax(Int32.Parse(AddPartMinTextBox.Text), Int32.Parse(AddPartMaxTextBox.Text));
                 CheckInvValues(Int32.Parse(AddPartInvTextBox.Text), Int32.Parse(AddPartMinTextBox.Text), Int32.Parse(AddPartMaxTextBox.Text));
+                CheckMachCompValue();
 
                 int AddPartID = Int32.Parse(AddPartIDTextBox.Text);
 
@@ -264,8 +300,6 @@ namespace Inventory_Management_System
 
                 this.Close();
 
-                MainScreen mainScreen = new MainScreen();
-                mainScreen.Show();
             }
 
             catch (Exception x)
