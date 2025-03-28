@@ -151,6 +151,9 @@ namespace Inventory_Management_System
 
                 ModifyPartForm modifyPartForm = new ModifyPartForm();
                 modifyPartForm.Show();
+
+                MainScreen mainScreen = new MainScreen();
+                mainScreen.Hide();
             }
             else
             {

@@ -262,7 +262,10 @@ namespace Inventory_Management_System
 
                 Inventory.AllParts.Add(newPart);
 
-                    this.Close();
+                this.Close();
+
+                MainScreen mainScreen = new MainScreen();
+                mainScreen.Show();
             }
 
             catch (Exception x)

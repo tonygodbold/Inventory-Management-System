@@ -17,7 +17,7 @@ namespace Inventory_Management_System
     {
         MainScreen mainScreen = (MainScreen)Application.OpenForms["MainScreen"];
 
-        Inventory part3 = new Inventory();
+        //Inventory part3 = new Inventory();
 
 
         public ModifyPartForm()
@@ -229,10 +229,12 @@ namespace Inventory_Management_System
                 CompareMinMax(Int32.Parse(ModMinTextBox.Text), Int32.Parse(ModMaxTextBox.Text));
                 CheckInvValues(Int32.Parse(ModInvTextBox.Text), Int32.Parse(ModMinTextBox.Text), Int32.Parse(ModMaxTextBox.Text));
 
-                int ModID = Int32.Parse(modPartID);
+                int ModID = Int32.Parse(ModIDTextBox.Text);
 
                 // Find the part in the list by its ID
                 Part partToUpdate = Inventory.AllParts.FirstOrDefault(part => part.PartID == ModID);
+
+                Part updatePart = null;
 
                 if (partToUpdate != null)
                 {
@@ -257,17 +259,13 @@ namespace Inventory_Management_System
                     }
                 }
 
-                else
-                {
-                    // Handle the case when the part with ModID doesn't exist
-                    MessageBox.Show("Part not found in the inventory.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                Inventory inventoryInstance = new Inventory();
 
-                part3.updatePart(partToUpdate.PartID, partToUpdate);
-
+                inventoryInstance.updatePart(partToUpdate.PartID, partToUpdate);
 
                 this.Close();
+
+                // Open Main Screen?
 
             }
             catch (Exception x)
