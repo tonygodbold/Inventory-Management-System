@@ -217,13 +217,58 @@ namespace Inventory_Management_System
             }
             else
             {
-                MessageBox.Show("All values must contain a value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                AddPartSaveButton.Enabled = false;
+                //MessageBox.Show("All values must contain a value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void AddPartSaveButton_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                CompareMinMax(Int32.Parse(AddPartMinTextBox.Text), Int32.Parse(AddPartMaxTextBox.Text));
+                CheckInvValues(Int32.Parse(AddPartInvTextBox.Text), Int32.Parse(AddPartMinTextBox.Text), Int32.Parse(AddPartMaxTextBox.Text));
+
+                int AddPartID = Int32.Parse(AddPartIDTextBox.Text);
+
+                //Part newPart = new Part (AddPartID, AddProdNameTextBox.Text, Decimal.Parse(AddProdPriceCostTextBox.Text), Int32.Parse(AddProdInventoryTextBox.Text), Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text));
+
+                Part newPart = null;
+
+                if (AddPartInHouseRadioButton.Checked)
+                {
+                    newPart = new InHouse(
+                        AddPartID,
+                        AddPartNameTextBox.Text,
+                        Decimal.Parse(AddPartPriceTextBox.Text),
+                        Int32.Parse(AddPartInvTextBox.Text),
+                        Int32.Parse(AddPartMinTextBox.Text),
+                        Int32.Parse(AddPartMaxTextBox.Text),
+                        Int32.Parse(AddPartMachCompTextBox.Text) // MachineID
+                    );
+                }
+                else if (AddPartOutSourcedRadioButton.Checked)
+                {
+                    newPart = new OutSourced(
+                        AddPartID,
+                        AddPartNameTextBox.Text,
+                        Decimal.Parse(AddPartPriceTextBox.Text),
+                        Int32.Parse(AddPartInvTextBox.Text),
+                        Int32.Parse(AddPartMinTextBox.Text),
+                        Int32.Parse(AddPartMaxTextBox.Text),
+                        AddPartMachCompTextBox.Text // CompanyName
+                    );
+                }
+
+                Inventory.AllParts.Add(newPart);
+
+                    this.Close();
+            }
+
+            catch (Exception x)
+            {
+                MessageBox.Show(x.Message);
+            }
         }
     }
 }

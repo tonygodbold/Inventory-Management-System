@@ -25,7 +25,7 @@ namespace Inventory_Management_System.Models
 
         // Constructor for the derived class
         public InHouse(int partID, string name, decimal price, int inStock, int min, int max, int machineID)
-            : base() // Explicitly call the base class constructor
+            //: base() // Explicitly call the base class constructor
         {
             this.PartID = partID;
             this.Name = name;
