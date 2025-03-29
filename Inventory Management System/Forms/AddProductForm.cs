@@ -145,9 +145,27 @@ namespace Inventory_Management_System
             }
             else
             {
-                Part part = (Part)DataGridPart.CurrentRow.DataBoundItem; //Grabs current row | Casts DataBoundItem into a type Part
+                int partID = ((Part)DataGridPart.CurrentRow.DataBoundItem).PartID;
 
-                product1.addAssociatedPart(part);
+                Inventory inventoryInstance = new Inventory();
+
+                Part part = inventoryInstance.lookupPart(partID);
+
+                if (part != null)
+                {
+                    if (product1.lookupAssociatedPart(partID) == null)
+                    {
+                        product1.addAssociatedPart(part);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Part is already associated with the product.");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Part not found!");
+                }
             }
         }
 

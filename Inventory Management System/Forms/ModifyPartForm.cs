@@ -25,25 +25,25 @@ namespace Inventory_Management_System
             InitializeComponent();
         }
         
-        public void ModInHouseRadioButton_CheckedChanged(object sendee, EventArgs e)
-        {
-            if (ModInHouseRadioButton.Checked == true)
-            {
-                ModMachCompLabel.Text = "Machine ID";
-                ModMachCompLabel.Name = "Machine ID";
-                ModMachCompLabel.Visible = true;
-            }
-        }
+        //public void ModInHouseRadioButton_CheckedChanged(object sendee, EventArgs e)
+        //{
+        //    if (ModInHouseRadioButton.Checked == true)
+        //    {
+        //        ModMachCompLabel.Text = "Machine ID";
+        //        ModMachCompLabel.Name = "Machine ID";
+        //        ModMachCompLabel.Visible = true;
+        //    }
+        //}
 
-        public void ModOutSourcedRadioButton_CheckedChanged(Object sendee, EventArgs e)
-        {
-            if (ModOutSourcedRadioButton.Checked == true)
-            {
-                ModMachCompLabel.Text = "Company Name";
-                ModMachCompLabel.Name = "Company Name";
-                ModMachCompLabel.Visible = true;
-            }
-        }
+        //public void ModOutSourcedRadioButton_CheckedChanged(Object sendee, EventArgs e)
+        //{
+        //    if (ModOutSourcedRadioButton.Checked == true)
+        //    {
+        //        ModMachCompLabel.Text = "Company Name";
+        //        ModMachCompLabel.Name = "Company Name";
+        //        ModMachCompLabel.Visible = true;
+        //    }
+        //}
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
@@ -221,7 +221,7 @@ namespace Inventory_Management_System
                 this.ModIDTextBox.Text = value;
             }
         }
-        
+
         public void ModPartSaveButton_Click(object sender, EventArgs e)
         {
             try
@@ -234,37 +234,57 @@ namespace Inventory_Management_System
                 // Find the part in the list by its ID
                 Part partToUpdate = Inventory.AllParts.FirstOrDefault(part => part.PartID == ModID);
 
-                //Part updatePart = null;
-
                 if (partToUpdate != null)
                 {
-                        // Update the existing part
-                        partToUpdate.Name = ModPartNameTextBox.Text;
-                        partToUpdate.Price = Decimal.Parse(ModPriceTextBox.Text);
-                        partToUpdate.InStock = Int32.Parse(ModInvTextBox.Text);
-                        partToUpdate.Min = Int32.Parse(ModMinTextBox.Text);
-                        partToUpdate.Max = Int32.Parse(ModMaxTextBox.Text);
+                    // Update the existing part
+                    partToUpdate.Name = ModPartNameTextBox.Text;
+                    partToUpdate.Price = Decimal.Parse(ModPriceTextBox.Text);
+                    partToUpdate.InStock = Int32.Parse(ModInvTextBox.Text);
+                    partToUpdate.Min = Int32.Parse(ModMinTextBox.Text);
+                    partToUpdate.Max = Int32.Parse(ModMaxTextBox.Text);
 
-                    if (ModInHouseRadioButton.Checked && partToUpdate is InHouse inHousePart)
+                    if (ModInHouseRadioButton.Checked)
                     {
-                        Part inHouse = new InHouse(ModID, ModPartNameTextBox.Text, Decimal.Parse(ModPriceTextBox.Text), Int32.Parse(ModInvTextBox.Text), Int32.Parse(ModMinTextBox.Text), Int32.Parse(ModMaxTextBox.Text), Int32.Parse(ModMachCompTextBox.Text));
-
-                        inHousePart.MachineID = Int32.Parse(ModMachCompTextBox.Text);
+                        if (partToUpdate is OutSourced)
+                        {
+                            partToUpdate = new InHouse(
+                                partToUpdate.PartID,
+                                partToUpdate.Name,
+                                partToUpdate.Price,
+                                partToUpdate.InStock,
+                                partToUpdate.Min,
+                                partToUpdate.Max,
+                                Int32.Parse(ModMachCompTextBox.Text));
+                        }
+                        else if (partToUpdate is InHouse inHousePart)
+                        {
+                            inHousePart.MachineID = Int32.Parse(ModMachCompTextBox.Text);
+                        }
                     }
-                    else if ((ModOutSourcedRadioButton.Checked && partToUpdate is OutSourced outSourcedPart))
+                    else if (ModOutSourcedRadioButton.Checked)
                     {
-                        Part OutSourced = new OutSourced(ModID, ModPartNameTextBox.Text, Decimal.Parse(ModPriceTextBox.Text), Int32.Parse(ModInvTextBox.Text), Int32.Parse(ModMinTextBox.Text), Int32.Parse(ModMaxTextBox.Text), ModMachCompTextBox.Text);
-
-                        outSourcedPart.CompanyName = ModMachCompTextBox.Text;
+                        if (partToUpdate is InHouse)
+                        {
+                            partToUpdate = new OutSourced(
+                                partToUpdate.PartID,
+                                partToUpdate.Name,
+                                partToUpdate.Price,
+                                partToUpdate.InStock,
+                                partToUpdate.Min,
+                                partToUpdate.Max,
+                                ModMachCompTextBox.Text);
+                        }
+                        else if (partToUpdate is OutSourced outSourcedPart)
+                        {
+                            outSourcedPart.CompanyName = ModMachCompTextBox.Text;
+                        }
                     }
                 }
 
                 Inventory inventoryInstance = new Inventory();
-
                 inventoryInstance.updatePart(partToUpdate.PartID, partToUpdate);
 
                 this.Close();
-
             }
             catch (Exception x)
             {
@@ -283,7 +303,6 @@ namespace Inventory_Management_System
 
         private void ModifyPartForm_Load(object sender, EventArgs e)
         {
-            // Assuming Inventory.CurrentIndex is an integer or a string
             if (Inventory.CurrentPart != null)
             {
                 ModIDTextBox.Text = Inventory.CurrentPart.PartID.ToString();
@@ -334,10 +353,23 @@ namespace Inventory_Management_System
             //    ModMachCompLabel.Visible = true;
             //}
         }
-                public static void Redirect(Form currentForm, Form targetForm)
+
+        private void ModInHouseRadioButton_CheckedChanged_2(object sender, EventArgs e)
         {
-            targetForm.Show();
-            currentForm.Hide();
+            if (ModInHouseRadioButton.Checked)
+            {
+                ModMachCompLabel.Text = "Machine ID";
+                ModMachCompTextBox.Clear();
+            }
+        }
+
+        private void ModOutSourcedRadioButton_CheckedChanged_2(object sender, EventArgs e)
+        {
+            if (ModOutSourcedRadioButton.Checked)
+            {
+                ModMachCompLabel.Text = "Company Name";
+                ModMachCompTextBox.Clear();
+            }
         }
     }
 }

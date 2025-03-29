@@ -84,15 +84,22 @@ namespace Inventory_Management_System
             }
             else
             {
-                Inventory inventoryInstance = new Inventory();
-
                 int partID = ((Part)DataGridPart.CurrentRow.DataBoundItem).PartID;
+
+                Inventory inventoryInstance = new Inventory();
 
                 Part part = inventoryInstance.lookupPart(partID);
 
                 if (part != null)
                 {
-                    product2.addAssociatedPart(part);
+                    if (product2.lookupAssociatedPart(partID) == null)
+                    {
+                        product2.addAssociatedPart(part);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Part is already associated with the product.");
+                    }
                 }
                 else
                 {
