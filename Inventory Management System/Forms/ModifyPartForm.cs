@@ -259,11 +259,9 @@ namespace Inventory_Management_System
                     }
                 }
 
-                //Inventory inventoryInstance = new Inventory();
+                Inventory inventoryInstance = new Inventory();
 
-                //inventoryInstance.updatePart(partToUpdate.PartID, partToUpdate);
-
-                part3.updatePart(partToUpdate.PartID, partToUpdate);
+                inventoryInstance.updatePart(partToUpdate.PartID, partToUpdate);
 
                 this.Close();
 

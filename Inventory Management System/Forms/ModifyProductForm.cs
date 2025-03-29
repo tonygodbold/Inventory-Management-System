@@ -148,8 +148,9 @@ namespace Inventory_Management_System
                     MessageBox.Show("Product not found in the inventory.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                Inventory inventoryInstance = new Inventory();
 
-                product3.updateProduct(productToUpdate.ProductID, productToUpdate);
+                inventoryInstance.updateProduct(productToUpdate.ProductID, productToUpdate);
 
                 this.Close();
 

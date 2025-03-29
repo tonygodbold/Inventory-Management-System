@@ -95,9 +95,6 @@ namespace Inventory_Management_System
             AddPartForm addPartForm = new AddPartForm(); // Instantiate the new form
             addPartForm.Show(); // Show the new form
 
-            //MainScreen mainScreen = new MainScreen();
-            //mainScreen.Hide();
-
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -206,7 +203,9 @@ namespace Inventory_Management_System
                 MessageBox.Show("Part has been deleted.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 Part P = DataGridPart.CurrentRow.DataBoundItem as Part;
-                Inventory.AllParts.Remove(P);
+                Inventory inventory = new Inventory();
+
+                inventory.deletePart(P);
             }
             else
             {
@@ -250,7 +249,9 @@ namespace Inventory_Management_System
                 MessageBox.Show("Product has been deleted.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 Product P = DataGridProduct.CurrentRow.DataBoundItem as Product;
-                Inventory.Products.Remove(P);
+
+                Inventory inventoryInstance = new Inventory();
+                inventoryInstance.removeProduct(P.ProductID);
             }
             else
             {

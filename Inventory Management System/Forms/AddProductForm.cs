@@ -123,7 +123,8 @@ namespace Inventory_Management_System
                     Max = Int32.Parse(AddProdMaxTextBox.Text)
                 };
 
-                Inventory.Products.Add(newProduct);
+                Inventory inventoryInstance = new Inventory();
+                inventoryInstance.addProduct(newProduct);
 
                 this.Close();
 
