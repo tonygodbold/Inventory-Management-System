@@ -286,11 +286,13 @@ namespace Inventory_Management_System
                 {
                     ModInHouseRadioButton.Checked = true;
                     ModMachCompTextBox.Text = inHousePart.MachineID.ToString();
+                    toolTip.SetToolTip(ModMachCompTextBox, "Enter the machine ID.");
                 }
                 else if (Inventory.CurrentPart is OutSourced outSourcedPart)
                 {
                     ModOutSourcedRadioButton.Checked = true;
                     ModMachCompTextBox.Text = outSourcedPart.CompanyName;
+                    toolTip.SetToolTip(ModMachCompTextBox, "Enter the company name.");
                 }
             }
             else
@@ -299,26 +301,25 @@ namespace Inventory_Management_System
             }
         }
 
-        private void ModInHouseRadioButton_CheckedChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void InHouseRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void ModInHouseRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (ModInHouseRadioButton.Checked)
             {
                 ModMachCompLabel.Text = "Machine ID";
+                ModMachCompLabel.Name = "Machine ID";
                 ModMachCompTextBox.Clear();
+                toolTip.SetToolTip(ModMachCompTextBox, "Enter the machine ID.");
             }
         }
 
-        private void OutSourcedRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void ModOutSourcedRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (ModOutSourcedRadioButton.Checked)
             {
                 ModMachCompLabel.Text = "Company Name";
+                ModMachCompLabel.Name = "Company Name";
                 ModMachCompTextBox.Clear();
+                toolTip.SetToolTip(ModMachCompTextBox, "Enter the company name.");
             }
         }
 
@@ -330,7 +331,7 @@ namespace Inventory_Management_System
             toolTip.SetToolTip(ModPriceTextBox, "Enter the price/cost of the part.");
             toolTip.SetToolTip(ModMaxTextBox, "Enter the maximum inventory level.");
             toolTip.SetToolTip(ModMinTextBox, "Enter the minimum inventory level.");
-            toolTip.SetToolTip(ModMachCompTextBox, "Enter the machine ID or company name, depending on the part type.");
+            //toolTip.SetToolTip(ModMachCompTextBox, "Enter the machine ID or company name, depending on the part type.");
         }
     }
 }

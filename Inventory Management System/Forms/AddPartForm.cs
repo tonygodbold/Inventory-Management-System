@@ -70,6 +70,7 @@ namespace Inventory_Management_System
                 MachineIDCompanyNameLabel.Text = "Machine ID";
                 MachineIDCompanyNameLabel.Name = "Machine ID";
                 MachineIDCompanyNameLabel.Visible = true;
+                toolTip.SetToolTip(AddPartMachCompTextBox, "Enter the machine ID.");
             }
         }
 
@@ -80,6 +81,7 @@ namespace Inventory_Management_System
                 MachineIDCompanyNameLabel.Text = "Company Name";
                 MachineIDCompanyNameLabel.Name = "Company Name";
                 MachineIDCompanyNameLabel.Visible = true;
+                toolTip.SetToolTip(AddPartMachCompTextBox, "Enter the company name.");
             }
         }
 
@@ -301,7 +303,7 @@ namespace Inventory_Management_System
             toolTip.SetToolTip(AddPartPriceTextBox, "Enter the price/cost of the part.");
             toolTip.SetToolTip(AddPartMaxTextBox, "Enter the maximum inventory level.");
             toolTip.SetToolTip(AddPartMinTextBox, "Enter the minimum inventory level.");
-            toolTip.SetToolTip(AddPartMachCompTextBox, "Enter the machine ID or company name, depending on the part type.");
+            //toolTip.SetToolTip(AddPartMachCompTextBox, "Enter the machine ID or company name, depending on the part type.");
         }
     }
 }
