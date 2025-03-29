@@ -95,8 +95,6 @@ namespace Inventory_Management_System
                     if (product2.lookupAssociatedPart(partID) == null)
                     {
                         product2.addAssociatedPart(part);
-                        display(); // Refresh the DataGridView to reflect the change
-
                     }
                     else
                     {
@@ -135,6 +133,12 @@ namespace Inventory_Management_System
         {
             try
             {
+                if (product2.AssociatedParts.Count == 0)
+                {
+                    MessageBox.Show("At least one part must be associated with the product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
                 CompareMinMax(Int32.Parse(ModProdMinTextBox.Text), Int32.Parse(ModProdMaxTextBox.Text));
                 CheckInvValues(Int32.Parse(ModProdStockTextBox.Text), Int32.Parse(ModProdMinTextBox.Text), Int32.Parse(ModProdMaxTextBox.Text));
 
@@ -223,7 +227,6 @@ namespace Inventory_Management_System
             }
             if (!found)
             {
-                //MessageBox.Show("Nothing found.");
                 DataGridPart.DataSource = Inventory.AllParts;
             }
         }
@@ -265,14 +268,14 @@ namespace Inventory_Management_System
             {
                 CheckIfNum(ModProdStockTextBox.Text);
                 ModProdStockTextBox.BackColor = Color.White;
-                ModProdSaveButton.Enabled = true;
+                ModProdStockTextBox.Enabled = true;
             }
             catch (Exception)
             {
                 ModProdStockTextBox.BackColor = Color.Salmon;
                 ToolTip toolTipNum = new ToolTip();
                 toolTipNum.SetToolTip(ModProdStockTextBox, "Number Values only.");
-                ModProdSaveButton.Enabled = false;
+                ModProdStockTextBox.Enabled = false;
             }
         }
 
@@ -341,8 +344,4 @@ namespace Inventory_Management_System
             {
                 ModProdMinTextBox.BackColor = Color.Salmon;
                 ToolTip toolTipNum = new ToolTip();
-                toolTipNum.SetToolTip(ModProdMinTextBox, "Numeric values only.");
-            }
-        }
-    }
-}
+                toolTipNum.Set
