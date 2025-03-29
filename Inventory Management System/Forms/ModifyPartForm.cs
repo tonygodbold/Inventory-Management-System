@@ -234,7 +234,7 @@ namespace Inventory_Management_System
                 // Find the part in the list by its ID
                 Part partToUpdate = Inventory.AllParts.FirstOrDefault(part => part.PartID == ModID);
 
-                Part updatePart = null;
+                //Part updatePart = null;
 
                 if (partToUpdate != null)
                 {
@@ -266,11 +266,6 @@ namespace Inventory_Management_System
                 part3.updatePart(partToUpdate.PartID, partToUpdate);
 
                 this.Close();
-
-                MainScreen mainScreen = new MainScreen();
-                mainScreen.Refresh();
-
-                // Open Main Screen?
 
             }
             catch (Exception x)
@@ -340,6 +335,11 @@ namespace Inventory_Management_System
             //    ModMachCompLabel.Name = "Company Name";
             //    ModMachCompLabel.Visible = true;
             //}
+        }
+                public static void Redirect(Form currentForm, Form targetForm)
+        {
+            targetForm.Show();
+            currentForm.Hide();
         }
     }
 }

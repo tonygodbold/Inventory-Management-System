@@ -188,9 +188,9 @@ namespace Inventory_Management_System.Models
                 AllParts[index] = updatedPart; // Replace the old part with the updated one
             }
         }
-        public void addPart(int partID, Part updatedPart)
-        {
-            //Part.parts.Add(updatedPart);
-        }
+        //public void addPart(int partID, Part updatedPart)
+        //{
+        //    Part.parts.Add(updatedPart);
+        //}
     }
 }

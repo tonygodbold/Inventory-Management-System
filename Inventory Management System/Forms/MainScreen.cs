@@ -52,6 +52,11 @@ namespace Inventory_Management_System
                 column.HeaderCell.Value = column.Index.ToString();
             }
         }
+        public static void Redirect(Form currentForm, Form targetForm)
+        {
+            targetForm.Show();
+            currentForm.Hide();
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -87,12 +92,11 @@ namespace Inventory_Management_System
 
         private void button1_Click(object sender, EventArgs e)
         {
-
             AddPartForm addPartForm = new AddPartForm(); // Instantiate the new form
             addPartForm.Show(); // Show the new form
 
-            MainScreen mainScreen = new MainScreen();
-            mainScreen.Hide();
+            //MainScreen mainScreen = new MainScreen();
+            //mainScreen.Hide();
 
         }
 
@@ -149,17 +153,15 @@ namespace Inventory_Management_System
                 int rowIndex = DataGridPart.SelectedRows[0].Index;
                 var selectedPart = (Part)DataGridPart.SelectedRows[0].DataBoundItem;
 
-                ModifyPartForm modifyPartForm = new ModifyPartForm();
-                modifyPartForm.Show();
-
-                MainScreen mainScreen = new MainScreen();
-                mainScreen.Hide();
+                ModifyPartForm modifyPartForm = new ModifyPartForm(); // Instantiate the new form
+                modifyPartForm.Show(); // Show the new form
             }
             else
             {
                 MessageBox.Show("No part is selected. Please select a part to modify.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
 
         private void AddProduct_Click(object sender, EventArgs e)
         {

@@ -296,10 +296,15 @@ namespace Inventory_Management_System
                     );
                 }
 
-                Inventory.AllParts.Add(newPart);
+                Inventory inventoryInstance = new Inventory();
+
+                //Inventory.AllParts.Add(newPart);
+                inventoryInstance.addPart(newPart);
 
                 this.Close();
 
+                //MainScreen mainScreenForm = new MainScreen(); // Instantiate the new form
+                //mainScreenForm.Show(); // Show the new form
             }
 
             catch (Exception x)
