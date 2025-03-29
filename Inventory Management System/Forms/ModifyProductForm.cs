@@ -15,6 +15,7 @@ namespace Inventory_Management_System
     {
         Product product2 = new Product();
         Inventory product3 = new Inventory();
+        private ToolTip toolTip = new ToolTip();
 
         public ModifyProductForm()
         {
@@ -22,6 +23,7 @@ namespace Inventory_Management_System
             formatDGV(DataGridPart);
             formatDGV(DataGridAssociatedPart);
             display();
+            InitializeToolTips(); // Initialize tooltips
         }
 
         private void display() // re-populate the DGV using the current MyList 
@@ -208,6 +210,16 @@ namespace Inventory_Management_System
             }
         }
 
+        private void InitializeToolTips()
+        {
+            toolTip.SetToolTip(ModProdIDTextBox, "This is the product ID.");
+            toolTip.SetToolTip(ModProdMaxTextBox, "Enter the maximum inventory level.");
+            toolTip.SetToolTip(ModProdMinTextBox, "Enter the minimum inventory level.");
+            toolTip.SetToolTip(ModProdPriceTextBox, "Enter the price/cost of the product.");
+            toolTip.SetToolTip(ModProdStockTextBox, "Enter the current inventory level.");
+            toolTip.SetToolTip(ModProdNameTextBox, "Enter the name of the product.");
+        }
+
         private void SearchButton_Click(object sender, EventArgs e)
         {
             BindingList<Part> TempList = new BindingList<Part>();
@@ -344,4 +356,8 @@ namespace Inventory_Management_System
             {
                 ModProdMinTextBox.BackColor = Color.Salmon;
                 ToolTip toolTipNum = new ToolTip();
-                toolTipNum.Set
+                toolTipNum.SetToolTip(ModProdMinTextBox, "Numeric values only.");
+            }
+        }
+    }
+}

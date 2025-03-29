@@ -15,6 +15,7 @@ namespace Inventory_Management_System
     {
         //instance of a Product class
         Product product1 = new Product();
+        private ToolTip toolTip = new ToolTip();
 
         //Constructor
         public AddProductForm()
@@ -24,6 +25,7 @@ namespace Inventory_Management_System
             formatDGV(DataGridAssociatedPart);
             display();
             AddEventHandlers(); // Call the method to add event handlers
+            InitializeToolTips(); // Initialize tooltips
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -216,6 +218,16 @@ namespace Inventory_Management_System
                     textBox.BackColor = Color.White;
                 }
             }
+        }
+
+        private void InitializeToolTips()
+        {
+            toolTip.SetToolTip(AddProdIDTextBox, "This is the product ID.");
+            toolTip.SetToolTip(AddProdMaxTextBox, "Enter the maximum inventory level.");
+            toolTip.SetToolTip(AddProdMinTextBox, "Enter the minimum inventory level.");
+            toolTip.SetToolTip(AddProdPriceCostTextBox, "Enter the price/cost of the product.");
+            toolTip.SetToolTip(AddProdInventoryTextBox, "Enter the current inventory level.");
+            toolTip.SetToolTip(AddProdNameTextBox, "Enter the name of the product.");
         }
 
         private void AddEventHandlers()
