@@ -84,9 +84,20 @@ namespace Inventory_Management_System
             }
             else
             {
-                Part part = (Part)DataGridPart.CurrentRow.DataBoundItem; //Grabs current row | Casts DataBoundItem into a type Part
+                Inventory inventoryInstance = new Inventory();
 
-                product2.addAssociatedPart(part);
+                int partID = ((Part)DataGridPart.CurrentRow.DataBoundItem).PartID;
+
+                Part part = inventoryInstance.lookupPart(partID);
+
+                if (part != null)
+                {
+                    product2.addAssociatedPart(part);
+                }
+                else
+                {
+                    MessageBox.Show("Part not found!");
+                }
             }
         }
 
@@ -137,9 +148,6 @@ namespace Inventory_Management_System
                     productToUpdate.InStock = Int32.Parse(ModProdStockTextBox.Text);
                     productToUpdate.Min = Int32.Parse(ModProdMinTextBox.Text);
                     productToUpdate.Max = Int32.Parse(ModProdMaxTextBox.Text);
-
-                    //Need to save the Associated Parts
-                    //productToUpdate.AssociatedParts = product2.AssociatedParts;
                 }
 
                 else
@@ -171,8 +179,6 @@ namespace Inventory_Management_System
                 ModProdPriceTextBox.Text = Inventory.CurrentProduct.Price.ToString();
                 ModProdMinTextBox.Text = Inventory.CurrentProduct.Min.ToString();
                 ModProdMaxTextBox.Text = Inventory.CurrentProduct.Max.ToString();
-
-
             }
 
             else
@@ -192,7 +198,9 @@ namespace Inventory_Management_System
             {
                 Part selectedPart = DataGridAssociatedPart.CurrentRow.DataBoundItem as Part;
 
-                product2.removeAssociatedPart(selectedPart.PartID);
+                Product productInstance = new Product();
+
+                productInstance.removeAssociatedPart(selectedPart.PartID);
             }
         }
 

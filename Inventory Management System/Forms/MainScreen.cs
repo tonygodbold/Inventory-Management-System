@@ -172,11 +172,23 @@ namespace Inventory_Management_System
             {
                 MessageBox.Show("No product is selected. Please select a product to modify.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-
             else
             {
-                ModifyProductForm modifyProductForm = new ModifyProductForm();
-                modifyProductForm.Show();
+                int productID = ((Product)DataGridProduct.CurrentRow.DataBoundItem).ProductID;
+
+                Inventory inventoryInstance = new Inventory();
+
+                Product product = inventoryInstance.lookupProduct(productID);
+
+                if (product != null)
+                {
+                    ModifyProductForm modifyProductForm = new ModifyProductForm();
+                    modifyProductForm.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Product not found!");
+                }
             }
         }
 
