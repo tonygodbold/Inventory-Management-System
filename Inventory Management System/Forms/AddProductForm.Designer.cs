@@ -66,6 +66,7 @@
             // 
             // AddProdMaxTextBox
             // 
+            this.AddProdMaxTextBox.BackColor = System.Drawing.Color.Salmon;
             this.AddProdMaxTextBox.Location = new System.Drawing.Point(360, 651);
             this.AddProdMaxTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.AddProdMaxTextBox.Name = "AddProdMaxTextBox";
@@ -74,6 +75,7 @@
             // 
             // AddProdMinTextBox
             // 
+            this.AddProdMinTextBox.BackColor = System.Drawing.Color.Salmon;
             this.AddProdMinTextBox.Location = new System.Drawing.Point(84, 654);
             this.AddProdMinTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.AddProdMinTextBox.Name = "AddProdMinTextBox";
@@ -82,6 +84,7 @@
             // 
             // AddProdPriceCostTextBox
             // 
+            this.AddProdPriceCostTextBox.BackColor = System.Drawing.Color.Salmon;
             this.AddProdPriceCostTextBox.Location = new System.Drawing.Point(160, 549);
             this.AddProdPriceCostTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.AddProdPriceCostTextBox.Name = "AddProdPriceCostTextBox";
@@ -90,6 +93,7 @@
             // 
             // AddProdInventoryTextBox
             // 
+            this.AddProdInventoryTextBox.BackColor = System.Drawing.Color.Salmon;
             this.AddProdInventoryTextBox.Location = new System.Drawing.Point(136, 443);
             this.AddProdInventoryTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.AddProdInventoryTextBox.Name = "AddProdInventoryTextBox";
@@ -98,6 +102,7 @@
             // 
             // AddProdNameTextBox
             // 
+            this.AddProdNameTextBox.BackColor = System.Drawing.Color.Salmon;
             this.AddProdNameTextBox.Location = new System.Drawing.Point(104, 324);
             this.AddProdNameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.AddProdNameTextBox.Name = "AddProdNameTextBox";

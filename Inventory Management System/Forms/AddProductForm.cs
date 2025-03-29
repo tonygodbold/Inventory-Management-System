@@ -16,7 +16,6 @@ namespace Inventory_Management_System
         //instance of a Product class
         Product product1 = new Product();
 
-
         //Constructor
         public AddProductForm()
         {
@@ -24,7 +23,7 @@ namespace Inventory_Management_System
             formatDGV(DataGridPart);
             formatDGV(DataGridAssociatedPart);
             display();
-
+            AddEventHandlers(); // Call the method to add event handlers
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -34,8 +33,6 @@ namespace Inventory_Management_System
         private void display() // re-populate the DGV using the current MyList 
         {
             DataGridPart.DataSource = Inventory.AllParts;
-            //DataGridAssociatedPart.DataSource = Product.AssociatedParts;
-
             DataGridAssociatedPart.DataSource = product1.AssociatedParts;
         }
         private void formatDGV(DataGridView d)
@@ -81,11 +78,10 @@ namespace Inventory_Management_System
             }
             if (!found)
             {
-                //MessageBox.Show("Nothing found.");
                 DataGridPart.DataSource = Inventory.AllParts;
             }
         }
-        
+
         public static void CompareMinMax(int min, int max)
         {
             if (min > max)
@@ -154,6 +150,7 @@ namespace Inventory_Management_System
                     if (product1.lookupAssociatedPart(partID) == null)
                     {
                         product1.addAssociatedPart(part);
+                        display(); // Refresh the DataGridView to reflect the change
                     }
                     else
                     {
@@ -174,12 +171,12 @@ namespace Inventory_Management_System
 
         private void DataGridPart_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-        //    if (e.RowIndex >= 0)
-        //    {
-        //        Product.CurrentIndexAssociatedPart = e.RowIndex;
-        //        Inventory.Products[Product.CurrentIndexPart].AssociatedParts.RemoveAt(Product.CurrentIndexAssociatedPart);
-        //        DataGridAssociatedPart.DataSource = Inventory.AllParts[Product.CurrentIndexPart].AssociatedParts;
-        //    }
+            //    if (e.RowIndex >= 0)
+            //    {
+            //        Product.CurrentIndexAssociatedPart = e.RowIndex;
+            //        Inventory.Products[Product.CurrentIndexPart].AssociatedParts.RemoveAt(Product.CurrentIndexAssociatedPart);
+            //        DataGridAssociatedPart.DataSource = Inventory.AllParts[Product.CurrentIndexPart].AssociatedParts;
+            //    }
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -191,8 +188,38 @@ namespace Inventory_Management_System
             else
             {
                 Part selectedPart = DataGridAssociatedPart.CurrentRow.DataBoundItem as Part;
-                product1.removeAssociatedPart(selectedPart.PartID);
+                if (selectedPart != null)
+                {
+                    product1.removeAssociatedPart(selectedPart.PartID);
+                    display(); // Refresh the DataGridView to reflect the change
+                }
             }
+        }
+
+        private void ValidateTextBox(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (textBox != null)
+            {
+                if (string.IsNullOrEmpty(textBox.Text))
+                {
+                    textBox.BackColor = Color.Salmon;
+                }
+                else
+                {
+                    textBox.BackColor = Color.White;
+                }
+            }
+        }
+
+        private void AddEventHandlers()
+        {
+            AddProdIDTextBox.TextChanged += ValidateTextBox;
+            AddProdMaxTextBox.TextChanged += ValidateTextBox;
+            AddProdMinTextBox.TextChanged += ValidateTextBox;
+            AddProdPriceCostTextBox.TextChanged += ValidateTextBox;
+            AddProdInventoryTextBox.TextChanged += ValidateTextBox;
+            AddProdNameTextBox.TextChanged += ValidateTextBox;
         }
     }
 }

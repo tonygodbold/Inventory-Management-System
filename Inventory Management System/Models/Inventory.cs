@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Security.Cryptography;
 using System.Diagnostics;
 using System.Xml.Linq;
+using System.Windows.Forms;
 
 namespace Inventory_Management_System.Models
 {
@@ -54,7 +55,7 @@ namespace Inventory_Management_System.Models
                 Min = 10,
                 Max = 1000
             };
-            
+
             Product widgetProduct2 = new Product
             {
                 ProductID = 2,
@@ -64,7 +65,7 @@ namespace Inventory_Management_System.Models
                 Min = 10,
                 Max = 1000
             };
-            
+
             Product widgetProduct3 = new Product
             {
                 ProductID = 3,
@@ -74,7 +75,7 @@ namespace Inventory_Management_System.Models
                 Min = 10,
                 Max = 1000
             };
-            
+
             Product widgetProduct4 = new Product
             {
                 ProductID = 4,
@@ -84,7 +85,7 @@ namespace Inventory_Management_System.Models
                 Min = 10,
                 Max = 1000
             };
-            
+
             Product widgetProduct5 = new Product
             {
                 ProductID = 5,
@@ -175,7 +176,18 @@ namespace Inventory_Management_System.Models
         // Returns true if the part was successfully deleted
         public bool deletePart(Part part)
         {
-            return AllParts.Remove(part); // Remove the part and return the result
+            // Check if the part is associated with any product
+            foreach (var product in Products)
+            {
+                if (product.AssociatedParts.Contains(part))
+                {
+                    // Part is associated with a product, prevent deletion
+                    MessageBox.Show("This Part is associated with a Product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return false;
+                }
+            }
+            // Part is not associated with any product, allow deletion
+            return AllParts.Remove(part);
         }
 
         // Method to update an existing part in the inventory
@@ -188,9 +200,5 @@ namespace Inventory_Management_System.Models
                 AllParts[index] = updatedPart; // Replace the old part with the updated one
             }
         }
-        //public void addPart(int partID, Part updatedPart)
-        //{
-        //    Part.parts.Add(updatedPart);
-        //}
     }
 }

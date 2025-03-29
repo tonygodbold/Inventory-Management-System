@@ -95,6 +95,8 @@ namespace Inventory_Management_System
                     if (product2.lookupAssociatedPart(partID) == null)
                     {
                         product2.addAssociatedPart(part);
+                        display(); // Refresh the DataGridView to reflect the change
+
                     }
                     else
                     {
@@ -191,14 +193,14 @@ namespace Inventory_Management_System
             {
                 MessageBox.Show("No associated part selected. Please select a part.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             else
             {
                 Part selectedPart = DataGridAssociatedPart.CurrentRow.DataBoundItem as Part;
-
-                Product productInstance = new Product();
-
-                productInstance.removeAssociatedPart(selectedPart.PartID);
+                if (selectedPart != null)
+                {
+                    product2.removeAssociatedPart(selectedPart.PartID);
+                    display(); // Refresh the DataGridView to reflect the change
+                }
             }
         }
 
