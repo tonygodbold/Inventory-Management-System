@@ -111,8 +111,6 @@ namespace Inventory_Management_System
 
                 int AddProdProductID = Int32.Parse(AddProdIDTextBox.Text);
 
-                //Product newProduct = new Product (AddProdProductID, AddProdNameTextBox.Text, Decimal.Parse(AddProdPriceCostTextBox.Text), Int32.Parse(AddProdInventoryTextBox.Text), Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text));
-
                 Product newProduct = new Product
                 {
                     ProductID = AddProdProductID,
@@ -120,14 +118,14 @@ namespace Inventory_Management_System
                     Price = Decimal.Parse(AddProdPriceCostTextBox.Text),
                     InStock = Int32.Parse(AddProdInventoryTextBox.Text),
                     Min = Int32.Parse(AddProdMinTextBox.Text),
-                    Max = Int32.Parse(AddProdMaxTextBox.Text)
+                    Max = Int32.Parse(AddProdMaxTextBox.Text),
+                    AssociatedParts = product1.AssociatedParts // Ensure associated parts are saved
                 };
 
                 Inventory inventoryInstance = new Inventory();
                 inventoryInstance.addProduct(newProduct);
 
                 this.Close();
-
             }
             catch (Exception x)
             {

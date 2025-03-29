@@ -138,37 +138,27 @@ namespace Inventory_Management_System
 
                 int ModID = Int32.Parse(ModProdIDTextBox.Text);
 
-                // Find the part in the list by its ID
                 Product productToUpdate = Inventory.Products.FirstOrDefault(product => product.ProductID == ModID);
 
                 if (productToUpdate != null)
                 {
-                    if (DataGridAssociatedPart == null)
-                    {
-                        MessageBox.Show("Associated part not found. Add a part.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
-                    // Update the existing part
                     productToUpdate.Name = ModProdNameTextBox.Text;
                     productToUpdate.Price = Decimal.Parse(ModProdPriceTextBox.Text);
                     productToUpdate.InStock = Int32.Parse(ModProdStockTextBox.Text);
                     productToUpdate.Min = Int32.Parse(ModProdMinTextBox.Text);
                     productToUpdate.Max = Int32.Parse(ModProdMaxTextBox.Text);
-                }
+                    productToUpdate.AssociatedParts = product2.AssociatedParts; // Ensure associated parts are saved
 
+                    Inventory inventoryInstance = new Inventory();
+
+                    inventoryInstance.updateProduct(productToUpdate.ProductID, productToUpdate);
+
+                    this.Close();
+                }
                 else
                 {
-                    // Handle the case when the part with ModProdID doesn't exist
                     MessageBox.Show("Product not found in the inventory.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
                 }
-                Inventory inventoryInstance = new Inventory();
-
-                inventoryInstance.updateProduct(productToUpdate.ProductID, productToUpdate);
-
-                this.Close();
-
             }
             catch (Exception x)
             {
@@ -186,6 +176,7 @@ namespace Inventory_Management_System
                 ModProdPriceTextBox.Text = Inventory.CurrentProduct.Price.ToString();
                 ModProdMinTextBox.Text = Inventory.CurrentProduct.Min.ToString();
                 ModProdMaxTextBox.Text = Inventory.CurrentProduct.Max.ToString();
+                DataGridAssociatedPart.DataSource = Inventory.CurrentProduct.AssociatedParts;
             }
 
             else

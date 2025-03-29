@@ -202,7 +202,7 @@ namespace Inventory_Management_System
 
             // Show confirmation dialog
             DialogResult result = MessageBox.Show(
-                "Are you sure you want to delete this product?",
+                "Are you sure you want to delete this part?",
                 "Delete Confirmation",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning

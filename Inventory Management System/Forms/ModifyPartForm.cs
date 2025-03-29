@@ -282,6 +282,7 @@ namespace Inventory_Management_System
                 }
 
                 Inventory inventoryInstance = new Inventory();
+
                 inventoryInstance.updatePart(partToUpdate.PartID, partToUpdate);
 
                 this.Close();
