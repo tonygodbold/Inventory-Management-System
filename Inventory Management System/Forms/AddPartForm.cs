@@ -13,13 +13,13 @@ namespace Inventory_Management_System
 {
     public partial class AddPartForm : Form
     {
+        private ToolTip toolTip = new ToolTip();
+
         public AddPartForm()
         {
             InitializeComponent();
-            //TextLoad();
+            InitializeToolTips(); // Initialize tooltips
         }
-
-        //private void TextLoad()
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
@@ -62,6 +62,7 @@ namespace Inventory_Management_System
                 throw new Exception("Inventory cannot be greater than Max or less than Minium.");
             }
         }
+
         private void InHouseRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (AddPartInHouseRadioButton.Checked == true)
@@ -112,8 +113,6 @@ namespace Inventory_Management_System
             catch (Exception)
             {
                 AddPartInvTextBox.BackColor = Color.Salmon;
-                ToolTip toolTipNum = new ToolTip();
-                toolTipNum.SetToolTip(AddPartInvTextBox, "Number Values only.");
                 AddPartSaveButton.Enabled = false;
             }
         }
@@ -129,8 +128,6 @@ namespace Inventory_Management_System
             catch (Exception)
             {
                 AddPartPriceTextBox.BackColor = Color.Salmon;
-                ToolTip toolTipDeci = new ToolTip();
-                toolTipDeci.SetToolTip(AddPartPriceTextBox, "Numeric or decimal values only.");
                 AddPartSaveButton.Enabled = false;
             }
         }
@@ -146,8 +143,6 @@ namespace Inventory_Management_System
             catch (Exception)
             {
                 AddPartMaxTextBox.BackColor = Color.Salmon;
-                ToolTip toolTipNum = new ToolTip();
-                toolTipNum.SetToolTip(AddPartMaxTextBox, "Numeric values only.");
                 AddPartSaveButton.Enabled = false;
             }
         }
@@ -163,8 +158,7 @@ namespace Inventory_Management_System
             catch (Exception)
             {
                 AddPartMinTextBox.BackColor = Color.Salmon;
-                ToolTip toolTipNum = new ToolTip();
-                toolTipNum.SetToolTip(AddPartMinTextBox, "Numeric values only.");
+                AddPartSaveButton.Enabled = false;
             }
         }
 
@@ -173,17 +167,7 @@ namespace Inventory_Management_System
             if (string.IsNullOrEmpty(AddPartMachCompTextBox.Text))
             {
                 AddPartMachCompTextBox.BackColor = Color.Salmon;
-                ToolTip toolTipNum = new ToolTip();
                 AddPartSaveButton.Enabled = false;
-
-                if (AddPartInHouseRadioButton.Checked)
-                {
-                    toolTipNum.SetToolTip(AddPartMachCompTextBox, "Numeric values only.");
-                }
-                else if (AddPartOutSourcedRadioButton.Checked)
-                {
-                    toolTipNum.SetToolTip(AddPartMachCompTextBox, "Company name only.");
-                }
             }
             else
             {
@@ -191,6 +175,7 @@ namespace Inventory_Management_System
                 EnableAddPartSaveButton();
             }
         }
+
         public void CheckIfNum(string checkData)
         {
             var isNum = int.TryParse(checkData, out int n);
@@ -199,6 +184,7 @@ namespace Inventory_Management_System
                 throw new Exception();
             }
         }
+
         private void CheckIfDeci(string checkDeci)
         {
             decimal deciNum;
@@ -218,9 +204,9 @@ namespace Inventory_Management_System
             else
             {
                 AddPartSaveButton.Enabled = false;
-                //MessageBox.Show("All values must contain a value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void CheckMachCompValue()
         {
             try
@@ -264,10 +250,8 @@ namespace Inventory_Management_System
                 CompareMinMax(Int32.Parse(AddPartMinTextBox.Text), Int32.Parse(AddPartMaxTextBox.Text));
                 CheckInvValues(Int32.Parse(AddPartInvTextBox.Text), Int32.Parse(AddPartMinTextBox.Text), Int32.Parse(AddPartMaxTextBox.Text));
                 CheckMachCompValue();
-                
-                int AddPartID = Int32.Parse(AddPartIDTextBox.Text);
 
-                //Part newPart = new Part (AddPartID, AddProdNameTextBox.Text, Decimal.Parse(AddProdPriceCostTextBox.Text), Int32.Parse(AddProdInventoryTextBox.Text), Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text));
+                int AddPartID = Int32.Parse(AddPartIDTextBox.Text);
 
                 Part newPart = null;
 
@@ -298,19 +282,26 @@ namespace Inventory_Management_System
 
                 Inventory inventoryInstance = new Inventory();
 
-                //Inventory.AllParts.Add(newPart);
                 inventoryInstance.addPart(newPart);
 
                 this.Close();
-
-                //MainScreen mainScreenForm = new MainScreen(); // Instantiate the new form
-                //mainScreenForm.Show(); // Show the new form
             }
 
             catch (Exception x)
             {
                 MessageBox.Show(x.Message);
             }
+        }
+
+        private void InitializeToolTips()
+        {
+            toolTip.SetToolTip(AddPartIDTextBox, "This is the part ID.");
+            toolTip.SetToolTip(AddPartNameTextBox, "Enter the name of the part.");
+            toolTip.SetToolTip(AddPartInvTextBox, "Enter the current inventory level.");
+            toolTip.SetToolTip(AddPartPriceTextBox, "Enter the price/cost of the part.");
+            toolTip.SetToolTip(AddPartMaxTextBox, "Enter the maximum inventory level.");
+            toolTip.SetToolTip(AddPartMinTextBox, "Enter the minimum inventory level.");
+            toolTip.SetToolTip(AddPartMachCompTextBox, "Enter the machine ID or company name, depending on the part type.");
         }
     }
 }

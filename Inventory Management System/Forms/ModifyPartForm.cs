@@ -16,34 +16,14 @@ namespace Inventory_Management_System
     public partial class ModifyPartForm : Form
     {
         MainScreen mainScreen = (MainScreen)Application.OpenForms["MainScreen"];
-
         Inventory part3 = new Inventory();
-
+        private ToolTip toolTip = new ToolTip();
 
         public ModifyPartForm()
         {
             InitializeComponent();
+            InitializeToolTips(); // Initialize tooltips
         }
-        
-        //public void ModInHouseRadioButton_CheckedChanged(object sendee, EventArgs e)
-        //{
-        //    if (ModInHouseRadioButton.Checked == true)
-        //    {
-        //        ModMachCompLabel.Text = "Machine ID";
-        //        ModMachCompLabel.Name = "Machine ID";
-        //        ModMachCompLabel.Visible = true;
-        //    }
-        //}
-
-        //public void ModOutSourcedRadioButton_CheckedChanged(Object sendee, EventArgs e)
-        //{
-        //    if (ModOutSourcedRadioButton.Checked == true)
-        //    {
-        //        ModMachCompLabel.Text = "Company Name";
-        //        ModMachCompLabel.Name = "Company Name";
-        //        ModMachCompLabel.Visible = true;
-        //    }
-        //}
 
         private void CancelButton_Click(object sender, EventArgs e)
         {
@@ -58,6 +38,7 @@ namespace Inventory_Management_System
                 throw new Exception();
             }
         }
+
         private void CheckIfDeci(string checkDeci)
         {
             decimal deciNum;
@@ -74,6 +55,10 @@ namespace Inventory_Management_System
             {
                 ModPartSaveButton.Enabled = true;
             }
+            else
+            {
+                ModPartSaveButton.Enabled = false;
+            }
         }
 
         private void ModPartNameTextBox_TextChanged(object sender, EventArgs e)
@@ -86,9 +71,10 @@ namespace Inventory_Management_System
             else
             {
                 ModPartNameTextBox.BackColor = Color.White;
-                ModPartSaveButton.Enabled = true;
+                EnableModSaveButton();
             }
         }
+
         private void ModIDTextBox_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(ModIDTextBox.Text))
@@ -99,7 +85,7 @@ namespace Inventory_Management_System
             else
             {
                 ModIDTextBox.BackColor = Color.White;
-                ModPartSaveButton.Enabled = true;
+                EnableModSaveButton();
             }
         }
 
@@ -114,8 +100,6 @@ namespace Inventory_Management_System
             catch (Exception)
             {
                 ModInvTextBox.BackColor = Color.Salmon;
-                ToolTip toolTipNum = new ToolTip();
-                toolTipNum.SetToolTip(ModInvTextBox, "Number Values only.");
                 ModPartSaveButton.Enabled = false;
             }
         }
@@ -131,8 +115,6 @@ namespace Inventory_Management_System
             catch (Exception)
             {
                 ModPriceTextBox.BackColor = Color.Salmon;
-                ToolTip toolTipDeci = new ToolTip();
-                toolTipDeci.SetToolTip(ModPriceTextBox, "Numeric or decimal values only.");
                 ModPartSaveButton.Enabled = false;
             }
         }
@@ -148,8 +130,6 @@ namespace Inventory_Management_System
             catch (Exception)
             {
                 ModMaxTextBox.BackColor = Color.Salmon;
-                ToolTip toolTipNum = new ToolTip();
-                toolTipNum.SetToolTip(ModMaxTextBox, "Numeric values only.");
                 ModPartSaveButton.Enabled = false;
             }
         }
@@ -165,8 +145,7 @@ namespace Inventory_Management_System
             catch (Exception)
             {
                 ModMinTextBox.BackColor = Color.Salmon;
-                ToolTip toolTipNum = new ToolTip();
-                toolTipNum.SetToolTip(ModMinTextBox, "Numeric values only.");
+                ModPartSaveButton.Enabled = false;
             }
         }
 
@@ -175,22 +154,12 @@ namespace Inventory_Management_System
             if (string.IsNullOrEmpty(ModMachCompTextBox.Text))
             {
                 ModMachCompTextBox.BackColor = Color.Salmon;
-                ToolTip toolTipNum = new ToolTip();
                 ModPartSaveButton.Enabled = false;
-
-                if (ModInHouseRadioButton.Checked)
-                {
-                    toolTipNum.SetToolTip(ModMachCompTextBox, "Numeric values only.");
-                }
-                else if (ModOutSourcedRadioButton.Checked)
-                {
-                    toolTipNum.SetToolTip(ModMachCompTextBox, "Company name only.");
-                }
             }
             else
             {
                 ModMachCompTextBox.BackColor = Color.White;
-                ModPartSaveButton.Enabled = true;
+                EnableModSaveButton();
             }
         }
 
@@ -337,26 +306,6 @@ namespace Inventory_Management_System
 
         private void InHouseRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            //if (ModInHouseRadioButton.Checked == true)
-            //{
-            //    ModMachCompLabel.Text = "Machine ID";
-            //    ModMachCompLabel.Name = "Machine ID";
-            //    ModMachCompLabel.Visible = true;
-            //}
-        }
-
-        private void OutSourcedRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            //if (ModOutSourcedRadioButton.Checked == true)
-            //{
-            //    ModMachCompLabel.Text = "Company Name";
-            //    ModMachCompLabel.Name = "Company Name";
-            //    ModMachCompLabel.Visible = true;
-            //}
-        }
-
-        private void ModInHouseRadioButton_CheckedChanged_2(object sender, EventArgs e)
-        {
             if (ModInHouseRadioButton.Checked)
             {
                 ModMachCompLabel.Text = "Machine ID";
@@ -364,13 +313,24 @@ namespace Inventory_Management_System
             }
         }
 
-        private void ModOutSourcedRadioButton_CheckedChanged_2(object sender, EventArgs e)
+        private void OutSourcedRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (ModOutSourcedRadioButton.Checked)
             {
                 ModMachCompLabel.Text = "Company Name";
                 ModMachCompTextBox.Clear();
             }
+        }
+
+        private void InitializeToolTips()
+        {
+            toolTip.SetToolTip(ModIDTextBox, "This is the part ID.");
+            toolTip.SetToolTip(ModPartNameTextBox, "Enter the name of the part.");
+            toolTip.SetToolTip(ModInvTextBox, "Enter the current inventory level.");
+            toolTip.SetToolTip(ModPriceTextBox, "Enter the price/cost of the part.");
+            toolTip.SetToolTip(ModMaxTextBox, "Enter the maximum inventory level.");
+            toolTip.SetToolTip(ModMinTextBox, "Enter the minimum inventory level.");
+            toolTip.SetToolTip(ModMachCompTextBox, "Enter the machine ID or company name, depending on the part type.");
         }
     }
 }
