@@ -157,7 +157,7 @@
             this.ModOutSourcedRadioButton.TabStop = true;
             this.ModOutSourcedRadioButton.Text = "Outsourced";
             this.ModOutSourcedRadioButton.UseVisualStyleBackColor = true;
-            //this.ModOutSourcedRadioButton.CheckedChanged += new System.EventHandler(this.ModOutSourcedRadioButton_CheckedChanged_2);
+            this.ModOutSourcedRadioButton.CheckedChanged += new System.EventHandler(this.ModOutSourcedRadioButton_CheckedChanged);
             // 
             // ModInHouseRadioButton
             // 
@@ -171,7 +171,7 @@
             this.ModInHouseRadioButton.TabStop = true;
             this.ModInHouseRadioButton.Text = "In-House";
             this.ModInHouseRadioButton.UseVisualStyleBackColor = true;
-            //this.ModInHouseRadioButton.CheckedChanged += new System.EventHandler(this.ModInHouseRadioButton_CheckedChanged_2);
+            this.ModInHouseRadioButton.CheckedChanged += new System.EventHandler(this.ModInHouseRadioButton_CheckedChanged);
             // 
             // MaxLabel
             // 

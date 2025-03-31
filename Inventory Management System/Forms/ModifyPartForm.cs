@@ -191,6 +191,15 @@ namespace Inventory_Management_System
                 this.ModIDTextBox.Text = value;
             }
         }
+        private void CheckIfString()
+        {
+            // Validate if AddPartMachCompTextBox.Text is an integer
+            if (!int.TryParse(ModIDTextBox.Text, out _))
+            {
+                throw new Exception("ID must be an number value.");
+            }
+        }
+
         private void CheckMachCompValue()
         {
             {
@@ -225,7 +234,8 @@ namespace Inventory_Management_System
             {
                 CompareMinMax(Int32.Parse(ModMinTextBox.Text), Int32.Parse(ModMaxTextBox.Text));
                 CheckInvValues(Int32.Parse(ModInvTextBox.Text), Int32.Parse(ModMinTextBox.Text), Int32.Parse(ModMaxTextBox.Text));
-                CheckMachCompValue();
+                CheckMachCompValue(); 
+                CheckIfString();
 
                 int ModID = Int32.Parse(ModIDTextBox.Text);
 
@@ -315,13 +325,13 @@ namespace Inventory_Management_System
                 {
                     ModInHouseRadioButton.Checked = true;
                     ModMachCompTextBox.Text = inHousePart.MachineID.ToString();
-                    toolTip.SetToolTip(ModMachCompTextBox, "Enter the machine ID.");
+                    //toolTip.SetToolTip(ModMachCompTextBox, "Enter the machine ID.");
                 }
                 else if (Inventory.CurrentPart is OutSourced outSourcedPart)
                 {
                     ModOutSourcedRadioButton.Checked = true;
                     ModMachCompTextBox.Text = outSourcedPart.CompanyName;
-                    toolTip.SetToolTip(ModMachCompTextBox, "Enter the company name.");
+                    //toolTip.SetToolTip(ModMachCompTextBox, "Enter the company name.");
                 }
             }
             else
