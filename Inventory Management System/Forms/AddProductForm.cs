@@ -96,7 +96,7 @@ namespace Inventory_Management_System
         {
             if (inv < min || inv > max)
             {
-                throw new Exception("Inventory cannot be greater than Max or less than Minium.");
+                throw new Exception("Inventory cannot be greater than Max or less than Min.");
             }
         }
 

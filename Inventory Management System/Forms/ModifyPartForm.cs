@@ -87,6 +87,7 @@ namespace Inventory_Management_System
                 ModIDTextBox.BackColor = Color.White;
                 EnableModSaveButton();
             }
+
         }
 
         private void ModInvTextBox_TextChanged(object sender, EventArgs e)
@@ -167,7 +168,7 @@ namespace Inventory_Management_System
         {
             if (min > max)
             {
-                MessageBox.Show("Min value cannot be greater than Max value.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw new Exception("Min value cannot be greater than Max value.");
             }
         }
 
@@ -175,7 +176,7 @@ namespace Inventory_Management_System
         {
             if (inv < min || inv > max)
             {
-                MessageBox.Show("Inventory cannot be greater than Max or less than Min.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw new Exception("Inventory cannot be greater than Max or less than Min.");
             }
         }
 
@@ -190,13 +191,41 @@ namespace Inventory_Management_System
                 this.ModIDTextBox.Text = value;
             }
         }
-
+        private void CheckMachCompValue()
+        {
+            {
+                // If InHouseButton is checked
+                if (ModInHouseRadioButton.Checked)
+                {
+                    // Validate if AddPartMachCompTextBox.Text is an integer
+                    if (!int.TryParse(ModMachCompTextBox.Text, out _))
+                    {
+                        throw new Exception("Machine ID must be an number value.");
+                    }
+                }
+                // If OutSourcedButton is checked
+                else if (ModOutSourcedRadioButton.Checked)
+                {
+                    // Validate if AddPartMachCompTextBox.Text is a non-numeric string
+                    if (int.TryParse(ModMachCompTextBox.Text, out _))
+                    {
+                        throw new Exception("Company Name must be a word.");
+                    }
+                }
+                else
+                {
+                    // Enable Save button if validation passes
+                    EnableModSaveButton();
+                }
+            }
+        }
         public void ModPartSaveButton_Click(object sender, EventArgs e)
         {
             try
             {
                 CompareMinMax(Int32.Parse(ModMinTextBox.Text), Int32.Parse(ModMaxTextBox.Text));
                 CheckInvValues(Int32.Parse(ModInvTextBox.Text), Int32.Parse(ModMinTextBox.Text), Int32.Parse(ModMaxTextBox.Text));
+                CheckMachCompValue();
 
                 int ModID = Int32.Parse(ModIDTextBox.Text);
 

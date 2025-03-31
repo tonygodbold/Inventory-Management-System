@@ -59,7 +59,7 @@ namespace Inventory_Management_System
         {
             if (inv < min || inv > max)
             {
-                throw new Exception("Inventory cannot be greater than Max or less than Minium.");
+                throw new Exception("Inventory cannot be greater than Max or less than Min.");
             }
         }
 
@@ -211,7 +211,6 @@ namespace Inventory_Management_System
 
         private void CheckMachCompValue()
         {
-            try
             {
                 // If InHouseButton is checked
                 if (AddPartInHouseRadioButton.Checked)
@@ -236,12 +235,6 @@ namespace Inventory_Management_System
                     // Enable Save button if validation passes
                     EnableAddPartSaveButton();
                 }
-            }
-            catch (Exception ex)
-            {
-                // Display the error message
-                MessageBox.Show(ex.Message);
-                return;
             }
         }
 
