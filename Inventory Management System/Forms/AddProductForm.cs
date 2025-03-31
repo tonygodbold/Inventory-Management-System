@@ -111,7 +111,7 @@ namespace Inventory_Management_System
                 }
 
                 CompareMinMax(Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text));
-                CheckInvValues(Int32.Parse(AddProdInventoryTextBox.Text), Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text));
+                CheckInvValues(Int32.Parse(AddProdInvTextBox.Text), Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text));
 
                 int AddProdProductID = Int32.Parse(AddProdIDTextBox.Text);
 
@@ -119,8 +119,8 @@ namespace Inventory_Management_System
                 {
                     ProductID = AddProdProductID,
                     Name = AddProdNameTextBox.Text,
-                    Price = Decimal.Parse(AddProdPriceCostTextBox.Text),
-                    InStock = Int32.Parse(AddProdInventoryTextBox.Text),
+                    Price = Decimal.Parse(AddProdPriceTextBox.Text),
+                    InStock = Int32.Parse(AddProdInvTextBox.Text),
                     Min = Int32.Parse(AddProdMinTextBox.Text),
                     Max = Int32.Parse(AddProdMaxTextBox.Text),
                     AssociatedParts = product1.AssociatedParts // Ensure associated parts are saved
@@ -225,8 +225,8 @@ namespace Inventory_Management_System
             toolTip.SetToolTip(AddProdIDTextBox, "This is the product ID.");
             toolTip.SetToolTip(AddProdMaxTextBox, "Enter the maximum inventory level.");
             toolTip.SetToolTip(AddProdMinTextBox, "Enter the minimum inventory level.");
-            toolTip.SetToolTip(AddProdPriceCostTextBox, "Enter the price/cost of the product.");
-            toolTip.SetToolTip(AddProdInventoryTextBox, "Enter the current inventory level.");
+            toolTip.SetToolTip(AddProdPriceTextBox, "Enter the price/cost of the product.");
+            toolTip.SetToolTip(AddProdInvTextBox, "Enter the current inventory level.");
             toolTip.SetToolTip(AddProdNameTextBox, "Enter the name of the product.");
         }
 
@@ -235,9 +235,114 @@ namespace Inventory_Management_System
             AddProdIDTextBox.TextChanged += ValidateTextBox;
             AddProdMaxTextBox.TextChanged += ValidateTextBox;
             AddProdMinTextBox.TextChanged += ValidateTextBox;
-            AddProdPriceCostTextBox.TextChanged += ValidateTextBox;
-            AddProdInventoryTextBox.TextChanged += ValidateTextBox;
+            AddProdPriceTextBox.TextChanged += ValidateTextBox;
+            AddProdInvTextBox.TextChanged += ValidateTextBox;
             AddProdNameTextBox.TextChanged += ValidateTextBox;
+        }
+
+        private void AddProdNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(AddProdNameTextBox.Text))
+            {
+                AddProdNameTextBox.BackColor = Color.Salmon;
+                SaveButton.Enabled = false;
+            }
+            else
+            {
+                AddProdNameTextBox.BackColor = Color.White;
+                EnableAddProdSaveButton();
+            }
+        }
+
+        private void AddProdInvTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckIfNum(AddProdInvTextBox.Text);
+                AddProdInvTextBox.BackColor = Color.White;
+                EnableAddProdSaveButton();
+            }
+            catch (Exception)
+            {
+                AddProdInvTextBox.BackColor = Color.Salmon;
+                SaveButton.Enabled = false;
+            }
+        }
+
+        private void AddProdPriceTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckIfDeci(AddProdPriceTextBox.Text);
+                AddProdPriceTextBox.BackColor = Color.White;
+                EnableAddProdSaveButton();
+            }
+            catch (Exception)
+            {
+                AddProdPriceTextBox.BackColor = Color.Salmon;
+                SaveButton.Enabled = false;
+            }
+        }
+
+        private void AddProdMaxTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckIfNum(AddProdMinTextBox.Text);
+                AddProdMinTextBox.BackColor = Color.White;
+                EnableAddProdSaveButton();
+            }
+            catch (Exception)
+            {
+                AddProdMinTextBox.BackColor = Color.Salmon;
+                SaveButton.Enabled = false;
+            }
+        }
+
+        private void AddProdMinTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckIfNum(AddProdMinTextBox.Text);
+                AddProdMinTextBox.BackColor = Color.White;
+                EnableAddProdSaveButton();
+            }
+            catch (Exception)
+            {
+                AddProdMinTextBox.BackColor = Color.Salmon;
+                SaveButton.Enabled = false;
+            }
+        }
+
+        public void CheckIfNum(string checkData)
+        {
+            var isNum = int.TryParse(checkData, out int n);
+            if (isNum == false)
+            {
+                throw new Exception();
+            }
+        }
+
+        private void CheckIfDeci(string checkDeci)
+        {
+            decimal deciNum;
+            var isDecimal = decimal.TryParse(checkDeci, out deciNum);
+            if (isDecimal == false)
+            {
+                throw new Exception();
+            }
+        }
+
+        private void EnableAddProdSaveButton()
+        {
+            if ((AddProdNameTextBox.BackColor == Color.White) && (AddProdInvTextBox.BackColor == Color.White) && (AddProdPriceTextBox.BackColor == Color.White) && (AddProdMaxTextBox.BackColor == Color.White) && (AddProdMinTextBox.BackColor == Color.White))
+            {
+                SaveButton.Enabled = true;
+            }
+            else
+            {
+                SaveButton.Enabled = false;
+            }
         }
     }
 }

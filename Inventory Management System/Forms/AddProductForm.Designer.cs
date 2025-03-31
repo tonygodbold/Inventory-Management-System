@@ -31,8 +31,8 @@
             this.AddProdIDTextBox = new System.Windows.Forms.TextBox();
             this.AddProdMaxTextBox = new System.Windows.Forms.TextBox();
             this.AddProdMinTextBox = new System.Windows.Forms.TextBox();
-            this.AddProdPriceCostTextBox = new System.Windows.Forms.TextBox();
-            this.AddProdInventoryTextBox = new System.Windows.Forms.TextBox();
+            this.AddProdPriceTextBox = new System.Windows.Forms.TextBox();
+            this.AddProdInvTextBox = new System.Windows.Forms.TextBox();
             this.AddProdNameTextBox = new System.Windows.Forms.TextBox();
             this.MaxLabel = new System.Windows.Forms.Label();
             this.MinLabel = new System.Windows.Forms.Label();
@@ -57,6 +57,8 @@
             // 
             // AddProdIDTextBox
             // 
+            this.AddProdIDTextBox.BackColor = System.Drawing.Color.DarkGray;
+            this.AddProdIDTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.AddProdIDTextBox.Location = new System.Drawing.Point(68, 220);
             this.AddProdIDTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.AddProdIDTextBox.Name = "AddProdIDTextBox";
@@ -72,6 +74,7 @@
             this.AddProdMaxTextBox.Name = "AddProdMaxTextBox";
             this.AddProdMaxTextBox.Size = new System.Drawing.Size(194, 31);
             this.AddProdMaxTextBox.TabIndex = 29;
+            this.AddProdMaxTextBox.TextChanged += new System.EventHandler(this.AddProdMaxTextBox_TextChanged);
             // 
             // AddProdMinTextBox
             // 
@@ -81,24 +84,26 @@
             this.AddProdMinTextBox.Name = "AddProdMinTextBox";
             this.AddProdMinTextBox.Size = new System.Drawing.Size(194, 31);
             this.AddProdMinTextBox.TabIndex = 28;
+            this.AddProdMinTextBox.TextChanged += new System.EventHandler(this.AddProdMinTextBox_TextChanged);
             // 
-            // AddProdPriceCostTextBox
+            // AddProdPriceTextBox
             // 
-            this.AddProdPriceCostTextBox.BackColor = System.Drawing.Color.Salmon;
-            this.AddProdPriceCostTextBox.Location = new System.Drawing.Point(160, 549);
-            this.AddProdPriceCostTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.AddProdPriceCostTextBox.Name = "AddProdPriceCostTextBox";
-            this.AddProdPriceCostTextBox.Size = new System.Drawing.Size(194, 31);
-            this.AddProdPriceCostTextBox.TabIndex = 27;
+            this.AddProdPriceTextBox.BackColor = System.Drawing.Color.Salmon;
+            this.AddProdPriceTextBox.Location = new System.Drawing.Point(160, 549);
+            this.AddProdPriceTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.AddProdPriceTextBox.Name = "AddProdPriceTextBox";
+            this.AddProdPriceTextBox.Size = new System.Drawing.Size(194, 31);
+            this.AddProdPriceTextBox.TabIndex = 27;
+            this.AddProdPriceTextBox.TextChanged += new System.EventHandler(this.AddProdPriceTextBox_TextChanged);
             // 
-            // AddProdInventoryTextBox
+            // AddProdInvTextBox
             // 
-            this.AddProdInventoryTextBox.BackColor = System.Drawing.Color.Salmon;
-            this.AddProdInventoryTextBox.Location = new System.Drawing.Point(136, 443);
-            this.AddProdInventoryTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.AddProdInventoryTextBox.Name = "AddProdInventoryTextBox";
-            this.AddProdInventoryTextBox.Size = new System.Drawing.Size(194, 31);
-            this.AddProdInventoryTextBox.TabIndex = 26;
+            this.AddProdInvTextBox.BackColor = System.Drawing.Color.Salmon;
+            this.AddProdInvTextBox.Location = new System.Drawing.Point(136, 443);
+            this.AddProdInvTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.AddProdInvTextBox.Name = "AddProdInvTextBox";
+            this.AddProdInvTextBox.Size = new System.Drawing.Size(194, 31);
+            this.AddProdInvTextBox.TabIndex = 26;
             // 
             // AddProdNameTextBox
             // 
@@ -108,6 +113,7 @@
             this.AddProdNameTextBox.Name = "AddProdNameTextBox";
             this.AddProdNameTextBox.Size = new System.Drawing.Size(194, 31);
             this.AddProdNameTextBox.TabIndex = 25;
+            this.AddProdNameTextBox.TextChanged += new System.EventHandler(this.AddProdNameTextBox_TextChanged);
             // 
             // MaxLabel
             // 
@@ -318,8 +324,8 @@
             this.Controls.Add(this.AddProdIDTextBox);
             this.Controls.Add(this.AddProdMaxTextBox);
             this.Controls.Add(this.AddProdMinTextBox);
-            this.Controls.Add(this.AddProdPriceCostTextBox);
-            this.Controls.Add(this.AddProdInventoryTextBox);
+            this.Controls.Add(this.AddProdPriceTextBox);
+            this.Controls.Add(this.AddProdInvTextBox);
             this.Controls.Add(this.AddProdNameTextBox);
             this.Controls.Add(this.MaxLabel);
             this.Controls.Add(this.MinLabel);
@@ -345,8 +351,8 @@
         private System.Windows.Forms.TextBox AddProdIDTextBox;
         private System.Windows.Forms.TextBox AddProdMaxTextBox;
         private System.Windows.Forms.TextBox AddProdMinTextBox;
-        private System.Windows.Forms.TextBox AddProdPriceCostTextBox;
-        private System.Windows.Forms.TextBox AddProdInventoryTextBox;
+        private System.Windows.Forms.TextBox AddProdPriceTextBox;
+        private System.Windows.Forms.TextBox AddProdInvTextBox;
         private System.Windows.Forms.TextBox AddProdNameTextBox;
         private System.Windows.Forms.Label MaxLabel;
         private System.Windows.Forms.Label MinLabel;
