@@ -27,6 +27,7 @@ namespace Inventory_Management_System
             AddEventHandlers(); // Call the method to add event handlers
             InitializeToolTips(); // Initialize tooltips
             DeleteButton.Enabled = false; // Disable delete button initially
+            SaveButton.Enabled = false; // Disable save button initially
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -225,6 +226,7 @@ namespace Inventory_Management_System
                 {
                     textBox.BackColor = Color.White;
                 }
+                EnableAddProdSaveButton(); // Check whether to enable the save button
             }
         }
 
@@ -354,8 +356,7 @@ namespace Inventory_Management_System
                    (AddProdInvTextBox.BackColor == Color.White) &&
                    (AddProdPriceTextBox.BackColor == Color.White) &&
                    (AddProdMaxTextBox.BackColor == Color.White) &&
-                   (AddProdMinTextBox.BackColor == Color.White) &&
-                   (AddProdIDTextBox.BackColor == Color.White);
+                   (AddProdMinTextBox.BackColor == Color.White);
         }
 
         private void EnableAddProdSaveButton()
@@ -364,3 +365,27 @@ namespace Inventory_Management_System
         }
     }
 }
+/*
+    private void SearchButtonProduct_Click(object sender, EventArgs e)
+        {
+            BindingList<Part> TempList = new BindingList<Part>();
+            bool found = false;
+            if (SearchFieldProduct.Text != "")
+            {
+                for (int i = 0; i < Inventory.AllParts.Count; i++)
+                {
+                    if (Inventory.AllParts[i].Name.ToUpper().Contains(SearchFieldProduct.Text.ToUpper()))
+                    {
+                        TempList.Add(Inventory.AllParts[i]);
+                        found = true;
+                    }
+                }
+                if (found)
+                    DataGridPart.DataSource = TempList;
+            }
+            if (!found)
+            {
+                DataGridPart.DataSource = Inventory.AllParts;
+            }
+        }
+*/
