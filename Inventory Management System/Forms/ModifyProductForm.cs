@@ -24,6 +24,8 @@ namespace Inventory_Management_System
             formatDGV(DataGridAssociatedPart);
             display();
             InitializeToolTips(); // Initialize tooltips
+            AddEventHandlers(); // Call the method to add event handlers
+            DeleteButton.Enabled = false; // Disable delete button initially
         }
 
         private void display() // re-populate the DGV using the current MyList 
@@ -97,6 +99,7 @@ namespace Inventory_Management_System
                     if (product2.lookupAssociatedPart(partID) == null)
                     {
                         product2.addAssociatedPart(part);
+                        display(); // Refresh the DataGridView to reflect the change
                     }
                     else
                     {
@@ -115,7 +118,6 @@ namespace Inventory_Management_System
 
         }
 
-
         private static void CompareMinMax(int min, int max)
         {
             if (min > max)
@@ -131,6 +133,7 @@ namespace Inventory_Management_System
                 MessageBox.Show("Inventory cannot be greater than Max or less than Min.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         public void ModProdSaveButton_Click(object sender, EventArgs e)
         {
             try
@@ -191,6 +194,13 @@ namespace Inventory_Management_System
             {
                 ModProdIDTextBox.Text = string.Empty; // Fallback for null
             }
+            ModProdIDTextBox.ReadOnly = true; // Set ModProdIDTextBox to readonly
+            ModProdIDTextBox.BackColor = Color.LightGray; // Set background color to light gray
+        }
+
+        private void DataGridAssociatedPart_SelectionChanged(object sender, EventArgs e)
+        {
+            DeleteButton.Enabled = DataGridAssociatedPart.CurrentRow != null;
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -220,6 +230,146 @@ namespace Inventory_Management_System
             toolTip.SetToolTip(ModProdNameTextBox, "Enter the name of the product.");
         }
 
+        private void AddEventHandlers()
+        {
+            ModProdIDTextBox.TextChanged += ValidateTextBox;
+            ModProdMaxTextBox.TextChanged += ValidateTextBox;
+            ModProdMinTextBox.TextChanged += ValidateTextBox;
+            ModProdPriceTextBox.TextChanged += ValidateTextBox;
+            ModProdStockTextBox.TextChanged += ValidateTextBox;
+            ModProdNameTextBox.TextChanged += ValidateTextBox;
+
+            ModProdStockTextBox.TextChanged += ModProdStockTextBox_TextChanged;
+            ModProdPriceTextBox.TextChanged += ModProdPriceTextBox_TextChanged;
+            ModProdMaxTextBox.TextChanged += ModProdMaxTextBox_TextChanged;
+            ModProdMinTextBox.TextChanged += ModProdMinTextBox_TextChanged;
+
+            DataGridAssociatedPart.SelectionChanged += DataGridAssociatedPart_SelectionChanged;
+        }
+
+        private void ValidateTextBox(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (textBox != null)
+            {
+                if (string.IsNullOrEmpty(textBox.Text))
+                {
+                    textBox.BackColor = Color.Salmon;
+                }
+                else
+                {
+                    textBox.BackColor = Color.White;
+                }
+            }
+        }
+
+        private void ModProdNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(ModProdNameTextBox.Text))
+            {
+                ModProdNameTextBox.BackColor = Color.Salmon;
+                ModProdSaveButton.Enabled = false;
+            }
+            else
+            {
+                ModProdNameTextBox.BackColor = Color.White;
+                EnableModSaveButton();
+            }
+        }
+
+        private void ModProdStockTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckIfNum(ModProdStockTextBox.Text);
+                ModProdStockTextBox.BackColor = Color.White;
+                EnableModSaveButton();
+            }
+            catch (Exception)
+            {
+                ModProdStockTextBox.BackColor = Color.Salmon;
+                ModProdSaveButton.Enabled = false;
+            }
+        }
+
+        private void ModProdPriceTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckIfDeci(ModProdPriceTextBox.Text);
+                ModProdPriceTextBox.BackColor = Color.White;
+                EnableModSaveButton();
+            }
+            catch (Exception)
+            {
+                ModProdPriceTextBox.BackColor = Color.Salmon;
+                ModProdSaveButton.Enabled = false;
+            }
+        }
+
+        private void ModProdMaxTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckIfNum(ModProdMaxTextBox.Text);
+                ModProdMaxTextBox.BackColor = Color.White;
+                EnableModSaveButton();
+            }
+            catch (Exception)
+            {
+                ModProdMaxTextBox.BackColor = Color.Salmon;
+                ModProdSaveButton.Enabled = false;
+            }
+        }
+
+        private void ModProdMinTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CheckIfNum(ModProdMinTextBox.Text);
+                ModProdMinTextBox.BackColor = Color.White;
+                EnableModSaveButton();
+            }
+            catch (Exception)
+            {
+                ModProdMinTextBox.BackColor = Color.Salmon;
+                ModProdSaveButton.Enabled = false;
+            }
+        }
+
+        public void CheckIfNum(string checkData)
+        {
+            var isNum = int.TryParse(checkData, out int n);
+            if (isNum == false)
+            {
+                throw new Exception();
+            }
+        }
+
+        private void CheckIfDeci(string checkDeci)
+        {
+            decimal deciNum;
+            var isDecimal = decimal.TryParse(checkDeci, out deciNum);
+            if (isDecimal == false)
+            {
+                throw new Exception();
+            }
+        }
+
+        private bool AreAllFieldsValid()
+        {
+            return (ModProdNameTextBox.BackColor == Color.White) &&
+                   (ModProdStockTextBox.BackColor == Color.White) &&
+                   (ModProdPriceTextBox.BackColor == Color.White) &&
+                   (ModProdMaxTextBox.BackColor == Color.White) &&
+                   (ModProdMinTextBox.BackColor == Color.White);
+        }
+
+        private void EnableModSaveButton()
+        {
+            ModProdSaveButton.Enabled = AreAllFieldsValid();
+        }
+
         private void SearchButton_Click(object sender, EventArgs e)
         {
             BindingList<Part> TempList = new BindingList<Part>();
@@ -240,123 +390,6 @@ namespace Inventory_Management_System
             if (!found)
             {
                 DataGridPart.DataSource = Inventory.AllParts;
-            }
-        }
-        public void CheckIfNum(string checkData)
-        {
-            var isNum = int.TryParse(checkData, out int n);
-            if (isNum == false)
-            {
-                throw new Exception();
-            }
-        }
-        private void CheckIfDeci(string checkDeci)
-        {
-            decimal deciNum;
-            var isDecimal = decimal.TryParse(checkDeci, out deciNum);
-            if (isDecimal == false)
-            {
-                throw new Exception();
-            }
-        }
-
-        private void ModProdNameTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(ModProdNameTextBox.Text))
-            {
-                ModProdNameTextBox.BackColor = Color.Salmon;
-                ModProdSaveButton.Enabled = false;
-            }
-            else
-            {
-                ModProdNameTextBox.BackColor = Color.White;
-                ModProdSaveButton.Enabled = true;
-            }
-        }
-
-        private void ModProdStockTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                CheckIfNum(ModProdStockTextBox.Text);
-                ModProdStockTextBox.BackColor = Color.White;
-                ModProdStockTextBox.Enabled = true;
-            }
-            catch (Exception)
-            {
-                ModProdStockTextBox.BackColor = Color.Salmon;
-                ToolTip toolTipNum = new ToolTip();
-                toolTipNum.SetToolTip(ModProdStockTextBox, "Number Values only.");
-                ModProdStockTextBox.Enabled = false;
-            }
-        }
-
-        private void ModProdPriceTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                CheckIfDeci(ModProdPriceTextBox.Text);
-                ModProdPriceTextBox.BackColor = Color.White;
-                ModProdPriceTextBox.Enabled = true;
-            }
-            catch (Exception)
-            {
-                ModProdPriceTextBox.BackColor = Color.Salmon;
-                ToolTip toolTipDeci = new ToolTip();
-                toolTipDeci.SetToolTip(ModProdPriceTextBox, "Numeric or decimal values only.");
-            }
-        }
-
-        private void EnableModSaveButton()
-        {
-            if ((ModProdNameTextBox.BackColor == Color.White) && (ModProdStockTextBox.BackColor == Color.White) && (ModProdPriceTextBox.BackColor == Color.White) && (ModProdMaxTextBox.BackColor == Color.White) && (ModProdMinTextBox.BackColor == Color.White))
-            {
-                ModProdSaveButton.Enabled = true;
-            }
-        }
-        private void ModProdIDTextBox_TextChanged(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(ModProdIDTextBox.Text))
-            {
-                ModProdIDTextBox.BackColor = Color.Salmon;
-                ModProdSaveButton.Enabled = false;
-            }
-            else
-            {
-                ModProdIDTextBox.BackColor = Color.White;
-                ModProdSaveButton.Enabled = true;
-            }
-        }
-        private void ModProdMaxTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                CheckIfNum(ModProdMaxTextBox.Text);
-                ModProdMaxTextBox.BackColor = Color.White;
-                EnableModSaveButton();
-            }
-            catch (Exception)
-            {
-                ModProdMaxTextBox.BackColor = Color.Salmon;
-                ToolTip toolTipNum = new ToolTip();
-                toolTipNum.SetToolTip(ModProdMaxTextBox, "Numeric values only.");
-                ModProdSaveButton.Enabled = false;
-            }
-        }
-
-        private void ModProdMinTextBox_TextChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                CheckIfNum(ModProdMinTextBox.Text);
-                ModProdMinTextBox.BackColor = Color.White;
-                EnableModSaveButton();
-            }
-            catch (Exception)
-            {
-                ModProdMinTextBox.BackColor = Color.Salmon;
-                ToolTip toolTipNum = new ToolTip();
-                toolTipNum.SetToolTip(ModProdMinTextBox, "Numeric values only.");
             }
         }
     }

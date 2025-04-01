@@ -26,6 +26,7 @@ namespace Inventory_Management_System
             display();
             AddEventHandlers(); // Call the method to add event handlers
             InitializeToolTips(); // Initialize tooltips
+            DeleteButton.Enabled = false; // Disable delete button initially
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -59,6 +60,8 @@ namespace Inventory_Management_System
         {
             int nextProduct = Inventory.Products.Max(product => product.ProductID) + 1;
             AddProdIDTextBox.Text = nextProduct.ToString();
+            AddProdIDTextBox.ReadOnly = true; // Set AddProdIDTextBox to readonly
+            AddProdIDTextBox.BackColor = Color.LightGray; // Set background color to light gray
         }
 
         private void SearchButtonProduct_Click(object sender, EventArgs e)
@@ -187,6 +190,11 @@ namespace Inventory_Management_System
             //    }
         }
 
+        private void DataGridAssociatedPart_SelectionChanged(object sender, EventArgs e)
+        {
+            DeleteButton.Enabled = DataGridAssociatedPart.CurrentRow != null;
+        }
+
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             if (!DataGridAssociatedPart.CurrentRow.Selected)
@@ -238,6 +246,13 @@ namespace Inventory_Management_System
             AddProdPriceTextBox.TextChanged += ValidateTextBox;
             AddProdInvTextBox.TextChanged += ValidateTextBox;
             AddProdNameTextBox.TextChanged += ValidateTextBox;
+
+            AddProdInvTextBox.TextChanged += AddProdInvTextBox_TextChanged;
+            AddProdPriceTextBox.TextChanged += AddProdPriceTextBox_TextChanged;
+            AddProdMaxTextBox.TextChanged += AddProdMaxTextBox_TextChanged;
+            AddProdMinTextBox.TextChanged += AddProdMinTextBox_TextChanged;
+
+            DataGridAssociatedPart.SelectionChanged += DataGridAssociatedPart_SelectionChanged;
         }
 
         private void AddProdNameTextBox_TextChanged(object sender, EventArgs e)
@@ -288,7 +303,7 @@ namespace Inventory_Management_System
         {
             try
             {
-                CheckIfNum(AddProdMinTextBox.Text);
+                CheckIfNum(AddProdMaxTextBox.Text);
                 AddProdMaxTextBox.BackColor = Color.White;
                 EnableAddProdSaveButton();
             }
@@ -333,16 +348,19 @@ namespace Inventory_Management_System
             }
         }
 
+        private bool AreAllFieldsValid()
+        {
+            return (AddProdNameTextBox.BackColor == Color.White) &&
+                   (AddProdInvTextBox.BackColor == Color.White) &&
+                   (AddProdPriceTextBox.BackColor == Color.White) &&
+                   (AddProdMaxTextBox.BackColor == Color.White) &&
+                   (AddProdMinTextBox.BackColor == Color.White) &&
+                   (AddProdIDTextBox.BackColor == Color.White);
+        }
+
         private void EnableAddProdSaveButton()
         {
-            if ((AddProdNameTextBox.BackColor == Color.White) && (AddProdInvTextBox.BackColor == Color.White) && (AddProdPriceTextBox.BackColor == Color.White) && (AddProdMaxTextBox.BackColor == Color.White) && (AddProdMinTextBox.BackColor == Color.White))
-            {
-                SaveButton.Enabled = true;
-            }
-            else
-            {
-                SaveButton.Enabled = false;
-            }
+            SaveButton.Enabled = AreAllFieldsValid();
         }
     }
 }

@@ -62,7 +62,6 @@
             this.ModProdIDTextBox.Name = "ModProdIDTextBox";
             this.ModProdIDTextBox.Size = new System.Drawing.Size(194, 31);
             this.ModProdIDTextBox.TabIndex = 37;
-            this.ModProdIDTextBox.TextChanged += new System.EventHandler(this.ModProdIDTextBox_TextChanged);
             // 
             // ModProdMaxTextBox
             // 
