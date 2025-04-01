@@ -289,12 +289,12 @@ namespace Inventory_Management_System
             try
             {
                 CheckIfNum(AddProdMinTextBox.Text);
-                AddProdMinTextBox.BackColor = Color.White;
+                AddProdMaxTextBox.BackColor = Color.White;
                 EnableAddProdSaveButton();
             }
             catch (Exception)
             {
-                AddProdMinTextBox.BackColor = Color.Salmon;
+                AddProdMaxTextBox.BackColor = Color.Salmon;
                 SaveButton.Enabled = false;
             }
         }
