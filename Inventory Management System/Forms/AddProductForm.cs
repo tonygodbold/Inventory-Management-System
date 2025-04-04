@@ -104,15 +104,17 @@ namespace Inventory_Management_System
             }
         }
 
+        // Modify the SaveButton_Click method
         public void SaveButton_Click(object sender, EventArgs e)
         {
             try
             {
-                if (product1.AssociatedParts.Count == 0)
-                {
-                    MessageBox.Show("At least one part must be associated with the product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                // Remove the check for at least one associated part
+                // if (product1.AssociatedParts.Count == 0)
+                // {
+                //     MessageBox.Show("At least one part must be associated with the product.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //     return;
+                // }
 
                 CompareMinMax(Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text));
                 CheckInvValues(Int32.Parse(AddProdInvTextBox.Text), Int32.Parse(AddProdMinTextBox.Text), Int32.Parse(AddProdMaxTextBox.Text));
