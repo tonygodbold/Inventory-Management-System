@@ -200,6 +200,24 @@ namespace Inventory_Management_System
                 return;
             }
 
+            Part selectedPart = DataGridPart.CurrentRow.DataBoundItem as Part;
+
+            if (selectedPart == null)
+            {
+                MessageBox.Show("Selected part is invalid.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if the selected part is associated with any products
+            List<Product> associatedProducts = Inventory.Products.Where(product => product.AssociatedParts.Contains(selectedPart)).ToList();
+
+            if (associatedProducts.Count > 0)
+            {
+                string productNames = string.Join(", ", associatedProducts.Select(p => p.Name));
+                MessageBox.Show($"This part is associated with at least one product. You must remove this part from its associated product(s) before it can be deleted.\n\nAssociated Parts:\n{productNames}", "Part Associated", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             // Show confirmation dialog
             DialogResult result = MessageBox.Show(
                 "Are you sure you want to delete this part?",
@@ -211,13 +229,15 @@ namespace Inventory_Management_System
             // Check the user's choice
             if (result == DialogResult.Yes)
             {
-                // Logic to delete the product
+                // Logic to delete the part
+                Inventory inventory = new Inventory();
+                inventory.deletePart(selectedPart);
+
                 MessageBox.Show("Part has been deleted.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                Part P = DataGridPart.CurrentRow.DataBoundItem as Part;
-                Inventory inventory = new Inventory();
-
-                inventory.deletePart(P);
+                // Refresh the DataGridView to reflect the change
+                DataGridPart.DataSource = null;
+                DataGridPart.DataSource = Inventory.AllParts;
             }
             else
             {
